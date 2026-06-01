@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SingularityPages — Landing Pages com poder de atração gravitacional." />
+  <title>SingularityPages</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Bebas Neue = display ultra-bold sem serifa, muito próximo do estilo da referência -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Bebas Neue', 'sans-serif'],
+            body:    ['Barlow', 'sans-serif'],
+            mono:    ['Space Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ CURSOR ══ -->
+  <div id="cursor"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- ══ HERO VIDEO BG ══ -->
+  <div class="video-bg" id="videoBg">
+    <video
+      id="bhVideo"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      poster="blackhole-poster.png"
+    >
+      <source src="blackhole.mp4" type="video/mp4" />
+    </video>
+    <!-- layered overlays to darken edges and blend with site palette -->
+    <div class="vid-overlay vid-vignette"></div>
+    <div class="vid-overlay vid-tint"></div>
+    <div class="vid-overlay vid-bottom-fade"></div>
+  </div>
+
+  <!-- ══ DUST CANVAS (particles over video) ══ -->
+  <canvas id="dustCanvas"></canvas>
+
+  <!-- ══ NAV ══ -->
+  <!-- Navbar Flutuante com Gradiente Cósmico -->
+<header class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-50">
+  <!-- Fundo agora com gradiente suave de Roxo Escuro para Ciano Escuro, mantendo a translucidez -->
+  <div class="relative w-100 h-20 flex items-center justify-between px-6 md:px-8 rounded-full bg-gradient-to-r from-purple-950/40 via-neutral-950/60 to-cyan-950/30 backdrop-blur-md border border-white/10 overflow-hidden shadow-[0_0_30px_rgba(123,47,255,0.08)]">
+    
+    <!-- LADO ESQUERDO: Buraco Negro com Transição Suave + Logo -->
+    <div class="flex items-center h-full relative left-0">
+      <!-- MÁSCARA GRADIENTE: Faz a imagem sumir organicamente antes de chegar ao texto -->
+      <img 
+        src="BlackHoleHeader.png" 
+        alt="Buraco Negro" 
+        class="absolute -left-10 top-1/2 -translate-y-1/2 h-[160%] max-w-none object-contain mix-blend-screen pointer-events-none opacity-90"
+        style="
+          mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
+          -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
+        "
+      />
+      
+      <!-- Texto do Logo posicionado estrategicamente -->
+      <a href="#" class="relative z-10 pl-16 text-xl font-bold tracking-wider text-white">
+        SINGULARITY<span class="text-neutral-400 font-light">PAGES</span>
+      </a>
+    </div>
+
+    <!-- CENTRO: Links de Navegação -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-300">
+      <a href="#portfolio" class="hover:text-cyan-400 transition-colors duration-300">Portfólio</a>
+      <a href="#diferenciais" class="hover:text-cyan-400 transition-colors duration-300">Diferenciais</a>
+      <a href="#processo" class="hover:text-cyan-400 transition-colors duration-300">Processo</a>
+      <a href="#contato" class="hover:text-cyan-400 transition-colors duration-300">Contato</a>
+    </nav>
+
+    <!-- LADO DIREITO: Botão Call to Action -->
+    <div class="relative z-10">
+      <a 
+        href="#contato" 
+        class="group flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-xs font-semibold uppercase tracking-widest text-emerald-400 hover:bg-emerald-500/20 hover:border-emerald-500/60 transition-all duration-300"
+      >
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        Falar Agora
+      </a>
+    </div>
+
+  </div>
+</header>
+
+    <!-- mobile -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#portfolio" class="mn-link">Portfólio</a>
+      <a href="#why"       class="mn-link">Diferenciais</a>
+      <a href="#process"   class="mn-link">Processo</a>
+      <a href="#cta"       class="mn-link">Contato</a>
+      <a href="https://wa.me/5512999999999" target="_blank" class="nav-cta self-start mt-2">
+        <span class="cta-dot"></span>FALAR AGORA
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO — titulo gigante sobre o buraco negro
+  ══════════════════════════════════════ -->
+  <section id="hero">
+
+    <!-- eyebrow -->
+    <div class="hero-eyebrow" id="heroEyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">AGÊNCIA DE ALTA CONVERSÃO</span>
+      <span class="eyebrow-line"></span>
+    </div>
+
+    <!-- GIANT TITLE — split across the black hole like the reference -->
+    <div class="hero-title-wrap" id="heroTitle">
+      <div class="ht-line ht-top">
+        <span class="ht-word" id="htW1">LANDING</span>
+        <span class="ht-word" id="htW2">PAGES</span>
+      </div>
+      <div class="ht-line ht-bottom">
+        <span class="ht-word ht-outline" id="htW3">GRAVITACIONAIS</span>
+      </div>
+    </div>
+
+    <!-- sub copy -->
+    <div class="hero-sub" id="heroSub">
+      <p>Código puro. Performance absoluta.<br/>Design que colapsa a concorrência.</p>
+    </div>
+
+    <!-- CTAs -->
+    <div class="hero-ctas" id="heroCtas">
+      <a href="https://wa.me/5512999999999?text=Quero+uma+Landing+Page!" target="_blank" rel="noopener" class="btn-primary">
+        <span class="btn-glow"></span>
+        <svg class="wh-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quero minha Landing Page
+      </a>
+      <a href="#portfolio" class="btn-ghost">
+        Ver projetos
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- stats -->
+    <div class="hero-stats" id="heroStats">
+      <div class="hstat">
+        <span class="hstat-n" data-count="100" data-suffix="">100</span>
+        <span class="hstat-l">PageSpeed</span>
+      </div>
+      <div class="hstat-div"></div>
+      <div class="hstat">
+        <span class="hstat-n" data-count="3" data-suffix="×">3×</span>
+        <span class="hstat-l">Mais Conversão</span>
+      </div>
+      <div class="hstat-div"></div>
+      <div class="hstat">
+        <span class="hstat-n" data-count="0" data-suffix="">0</span>
+        <span class="hstat-l">Templates</span>
+      </div>
+    </div>
+
+    <!-- scroll hint -->
+    <div class="scroll-hint" id="scrollHint">
+      <div class="sh-mouse"><div class="sh-wheel"></div></div>
+      <span>SCROLL</span>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PORTFOLIO
+  ══════════════════════════════════════ -->
+<section id="portfolio" class="section section-first">
+    <div class="section-bg-glow glow-purple"></div>
+    <div class="absolute top-20 right-0 w-96 h-96 border border-dashed border-cyan-500/10 rounded-full pointer-events-none -mr-48 hidden md:block animate-[spin_120s_linear_infinite]"></div>
+
+    <div class="container">
+      <div class="section-head">
+        <span class="s-eyebrow" data-gsap="fade-up">// Casos de Sucesso</span>
+        <h2 class="s-title" data-gsap="slide-left">
+          PROJETOS QUE<br/><em class="s-italic">ORBITAM</em> OUTRO NÍVEL.
+        </h2>
+        <p class="s-sub" data-gsap="fade-up" data-gsap-delay=".15">Cada entrega é engenharia visual. Sem atalhos, sem limites de plataforma.</p>
+      </div>
+
+      <div class="port-grid">
+
+        <!-- Card featured -->
+        <div class="pcard pcard-featured" data-gsap="slide-left">
+          <div class="pcard-glow"></div>
+          <div class="pcard-inner">
+            <div class="pcard-header">
+              <div>
+                <span class="chip chip-cyan">EM DESTAQUE</span>
+                <h3 class="pcard-title">DeliveryPro</h3>
+                <p class="pcard-sub">Software de Gestão para Delivery</p>
+              </div>
+              <div class="pcard-icon">⚡</div>
+            </div>
+            <!-- mockup -->
+            <div class="mockup">
+              <div class="mockup-bar">
+                <span class="md red"></span><span class="md yellow"></span><span class="md green"></span>
+                <span class="mockup-url">delivorypro.app</span>
+              </div>
+              <div class="mockup-body">
+                <div class="msidebar">
+                  <div class="ms-logo"></div>
+                  <div class="ms-item on"></div>
+                  <div class="ms-item"></div><div class="ms-item"></div><div class="ms-item"></div>
+                </div>
+                <div class="mmain">
+                  <div class="mh"><div class="mh-title"></div><div class="mh-btn"></div></div>
+                  <div class="mstats"><div class="msc c1"></div><div class="msc c2"></div><div class="msc c3"></div></div>
+                  <div class="mchart">
+                    <div class="cb" style="height:45%"></div><div class="cb" style="height:70%"></div>
+                    <div class="cb" style="height:55%"></div><div class="cb" style="height:85%"></div>
+                    <div class="cb" style="height:65%"></div><div class="cb" style="height:90%"></div>
+                    <div class="cb" style="height:72%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pcard-tags">
+              <span class="tag">HTML5</span><span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">100/100</span>
+            </div>
+            <div class="pcard-foot">
+              <span>⚡ <b>0.8s</b> load &nbsp;·&nbsp; 📈 <b>+240%</b> conversão</span>
+              <a href="#" class="pcard-link">Ver Projeto →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="pcard" data-gsap="slide-right">
+          <div class="pcard-glow purple"></div>
+          <div class="pcard-inner p-6">
+            <span class="chip chip-purple">EM BREVE</span>
+            <h3 class="pcard-title mt-4">E-commerce Fashion</h3>
+            <p class="pcard-sub mt-1 mb-5">UI cinematográfica, animações 3D e checkout ultra-rápido.</p>
+            <div class="orbit-vis">
+              <div class="ov-ring"></div><div class="ov-core"></div>
+              <p class="ov-label">CONFIDENCIAL</p>
+            </div>
+            <div class="pcard-tags mt-5">
+              <span class="tag">Next.js</span><span class="tag">Three.js</span><span class="tag">GSAP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="pcard" data-gsap="slide-up">
+          <div class="pcard-glow cyan"></div>
+          <div class="pcard-inner p-6">
+            <span class="chip chip-green">CASE REAL</span>
+            <h3 class="pcard-title mt-4">Clínica Odonto</h3>
+            <p class="pcard-sub mt-1 mb-5">Conversão elevada 3× em 30 dias.</p>
+            <div class="metrics">
+              <div class="metric"><span class="metric-v grad-cyan">+312%</span><span class="metric-l">Leads</span></div>
+              <div class="metric"><span class="metric-v grad-plasma">98</span><span class="metric-l">PageSpeed</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 wide -->
+        <div class="pcard pcard-wide" data-gsap="slide-up" data-gsap-delay=".1">
+          <div class="pcard-glow"></div>
+          <div class="pcard-inner p-6">
+            <div class="pcard-wide-inner">
+              <div>
+                <span class="chip chip-cyan">SAAS</span>
+                <h3 class="pcard-title mt-4">Plataforma de Cursos Online</h3>
+                <p class="pcard-sub mt-1">Dashboard completo com gamificação, área de membros e analytics em tempo real.</p>
+                <div class="pcard-tags mt-4">
+                  <span class="tag">Vue.js</span><span class="tag">Tailwind</span><span class="tag">GSAP</span><span class="tag">WebSockets</span>
+                </div>
+              </div>
+              <div class="pcard-wide-stat">
+                <span class="pws-label">Prazo</span>
+                <span class="pws-num grad-cyan">12d</span>
+                <span class="pws-label">Entrega garantida</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       WHY
+  ══════════════════════════════════════ -->
+  <section id="why" class="section">
+    <div class="section-bg-glow glow-cyan right"></div>
+
+    <div class="container">
+      <div class="section-head">
+        <span class="s-eyebrow" data-gsap="fade-up">// Por que a Singularidade?</span>
+        <h2 class="s-title" data-gsap="slide-right">
+          AS LEIS DA FÍSICA<br/><em class="s-italic">NÃO SE APLICAM</em> AQUI.
+        </h2>
+      </div>
+
+      <div class="comp-wrap" data-gsap="scale-in">
+        <div class="comp-head">
+          <div></div>
+          <div class="text-center"><span class="chip chip-red">SITES COMUNS</span></div>
+          <div class="text-center"><span class="chip chip-cyan">SINGULARITYPAGES</span></div>
+        </div>
+        <div class="comp-table">
+          <div class="crow" data-comp><div class="cf"><span>⚡</span>Velocidade</div><div class="cb2"><span class="cx">✗</span>3–8 segundos</div><div class="cg"><span class="ck">✓</span>Abaixo de 1s</div></div>
+          <div class="crow" data-comp><div class="cf"><span>🎨</span>Design</div><div class="cb2"><span class="cx">✗</span>Template genérico</div><div class="cg"><span class="ck">✓</span>100% customizado</div></div>
+          <div class="crow" data-comp><div class="cf"><span>📱</span>Mobile</div><div class="cb2"><span class="cx">✗</span>Quebra no celular</div><div class="cg"><span class="ck">✓</span>Mobile-first</div></div>
+          <div class="crow" data-comp><div class="cf"><span>🔒</span>Propriedade</div><div class="cb2"><span class="cx">✗</span>Preso na plataforma</div><div class="cg"><span class="ck">✓</span>Seu código, forever</div></div>
+          <div class="crow" data-comp><div class="cf"><span>🔍</span>SEO Técnico</div><div class="cb2"><span class="cx">✗</span>Plugins, bloat</div><div class="cg"><span class="ck">✓</span>Core Web Vitals 100</div></div>
+          <div class="crow" data-comp><div class="cf"><span>✨</span>Animações</div><div class="cb2"><span class="cx">✗</span>Inexistentes</div><div class="cg"><span class="ck">✓</span>Motion design épico</div></div>
+          <div class="crow" data-comp><div class="cf"><span>💰</span>Custo</div><div class="cb2"><span class="cx">✗</span>Mensalidade eterna</div><div class="cg"><span class="ck">✓</span>Sem taxas surpresa</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     (NEW) SEÇÃO DE DEPOIMENTOS - ORBITANTES
+     ========================================================================== -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="s-eyebrow" data-gsap="fade-up">// Quem entrou na nossa órbita</span>
+      <h2 class="s-title" data-gsap="slide-left">O QUE DIZEM OS<br/><em class="s-italic">ORBITANTES</em>.</h2>
+    </div>
+    
+    <div class="testi-grid">
+      <!-- Card 1 -->
+      <div class="tcard" data-gsap="slide-up">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">"A velocidade da nossa página foi de 4s para menos de 1s. O volume de conversão de leads triplicou na primeira semana de rodagem."</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">DR</div>
+          <div>
+            <div class="tcard-name">Dr. Rodrigo Silva</div>
+            <div class="tcard-role">Diretor da OdontoPrime</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="tcard" data-gsap="slide-up">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-quote">"O design premium reposicionou nossa marca de infoprodutos. Conseguimos dobrar o ticket do nosso High Ticket sem perder conversão."</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">AM</div>
+          <div>
+            <div class="tcard-name">Ana Martins</div>
+            <div class="tcard-role">CMO da FinTech Nexus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ══════════════════════════════════════
+       PROCESS
+  ══════════════════════════════════════ -->
+  <section id="process" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="s-eyebrow" data-gsap="fade-up">// O Processo</span>
+        <h2 class="s-title" data-gsap="slide-left">
+          DA IDEIA AO<br/><em class="s-italic">HORIZONTE</em> DE EVENTOS.
+        </h2>
+      </div>
+
+      <div class="proc-grid">
+        <div class="proc-card" data-gsap="slide-up" data-gsap-delay="0">
+          <div class="proc-num">01</div>
+          <div class="proc-ico">🌌</div>
+          <h4 class="proc-title">Briefing Gravitacional</h4>
+          <p class="proc-desc">Entendemos seu negócio, público e objetivo. Sem suposições, sem chute.</p>
+        </div>
+        <div class="proc-card" data-gsap="slide-up" data-gsap-delay=".1">
+          <div class="proc-num">02</div>
+          <div class="proc-ico">🎨</div>
+          <h4 class="proc-title">Design Nebuloso</h4>
+          <p class="proc-desc">Layout exclusivo em 48h. Aprovação antes de codar.</p>
+        </div>
+        <div class="proc-card" data-gsap="slide-up" data-gsap-delay=".2">
+          <div class="proc-num">03</div>
+          <div class="proc-ico">⚛️</div>
+          <h4 class="proc-title">Código Quântico</h4>
+          <p class="proc-desc">HTML, CSS e JS limpos. Zero dependências inúteis.</p>
+        </div>
+        <div class="proc-card" data-gsap="slide-up" data-gsap-delay=".3">
+          <div class="proc-num">04</div>
+          <div class="proc-ico">🚀</div>
+          <h4 class="proc-title">Lançamento Orbital</h4>
+          <p class="proc-desc">Deploy otimizado, relatório de performance e suporte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CTA
+  ══════════════════════════════════════ -->
+  <section id="cta" class="section section-cta">
+    <!-- CTA also has the video bg, but darker -->
+    <div class="cta-rings">
+      <div class="cr cr1"></div><div class="cr cr2"></div>
+      <div class="cr cr3"></div><div class="cr cr4"></div>
+    </div>
+
+    <div class="container cta-inner">
+      <span class="s-eyebrow" data-gsap="fade-up">// A Força de Atração</span>
+
+      <h2 class="cta-title" data-gsap="cta-reveal">
+        SUA EMPRESA<br/>
+        <em class="s-italic cta-italic">MERECE</em><br/>
+        SER A SINGULARIDADE.
+      </h2>
+
+      <p class="cta-sub" data-gsap="fade-up" data-gsap-delay=".2">
+        Sem formulários chatos. Sem PDF tedioso.<br/>
+        Uma conversa no WhatsApp. Simples assim.
+      </p>
+
+      <a href="https://wa.me/5512999999999?text=Ol%C3%A1!+Quero+uma+Landing+Page+da+SingularityPages!" target="_blank" rel="noopener" class="btn-cta-mega" data-gsap="scale-in" data-gsap-delay=".3">
+        <span class="mega-aura"></span>
+        <span class="mega-aura mega-aura-2"></span>
+        <svg class="wh-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>Iniciar Meu Projeto</span>
+      </a>
+
+      <p class="cta-footnote" data-gsap="fade-up" data-gsap-delay=".45">Resposta em até 2 horas &nbsp;·&nbsp; Orçamento sem compromisso</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <span class="footer-logo">SingularityPages</span>
+        <p class="footer-tagline">Código puro. Design singular.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://wa.me/5512999999999" target="_blank">WhatsApp</a>
+        <a href="mailto:contato@singularitypages.com.br">E-mail</a>
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+      </div>
+      <p class="footer-copy">© 2025 SingularityPages</p>
+    </div>
+  </footer>
+
+  <!-- Floating WA -->
+  <a id="waFloat" href="https://wa.me/5512999999999" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="wha-pulse"></span>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>
