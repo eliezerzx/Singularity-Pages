@@ -426,3 +426,12 @@ function animateHero() {
   // Seu código atual de animação do GSAP continua aqui embaixo...
   // gsap.from('[data-gsap="fade-up"]', { opacity: 0, y: 30 ... });
 }
+
+// Remove a tela de carregamento suavemente assim que tudo estiver pronto
+window.addEventListener('load', () => {
+  const loader = document.getElementById('preloader');
+  if (loader) {
+    loader.style.opacity = '0';
+    setTimeout(() => loader.remove(), 700);
+  }
+});
