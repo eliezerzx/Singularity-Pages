@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SingularityPages Mentoria — Sessões 1:1 de estratégia de conversão. Analise seu funil, identifique gargalos e aumente seus resultados." />
+  <title>Mentoria de Conversão — SingularityPages</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Mentoria-specific overrides ── */
+    .ment-hero {
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 28px 100px;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%,
+        rgba(180,83,9,.18) 0%, transparent 65%),
+        #060300;
+      overflow: hidden;
+    }
+    /* Animated ring behind hero text */
+    .ment-hero-ring {
+      position: absolute;
+      width: min(700px, 90vw);
+      height: min(700px, 90vw);
+      border: 1px solid rgba(249,115,22,.07);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation: crPulse 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .ment-hero-ring:nth-child(2) {
+      width: min(500px, 70vw);
+      height: min(500px, 70vw);
+      border-color: rgba(249,115,22,.1);
+      animation-duration: 5s;
+      animation-delay: .8s;
+    }
+    .ment-hero-ring:nth-child(3) {
+      width: min(300px, 50vw);
+      height: min(300px, 50vw);
+      border-color: rgba(251,191,36,.12);
+      animation-duration: 3.5s;
+      animation-delay: 1.6s;
+    }
+
+    .ment-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 5px 18px;
+      border-radius: 999px;
+      background: rgba(249,115,22,.07);
+      border: 1px solid rgba(249,115,22,.22);
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .ment-hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 12rem);
+      line-height: .88;
+      letter-spacing: .02em;
+      color: white;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 4px 40px rgba(3,1,0,.9);
+    }
+    .ment-hero-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, #f97316, #fbbf24, #d97706);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ment-hero-sub {
+      max-width: 560px;
+      font-size: clamp(.95rem, 1.8vw, 1.1rem);
+      font-weight: 300;
+      color: rgba(255,248,240,.55);
+      line-height: 1.8;
+      margin-bottom: 44px;
+      position: relative;
+      z-index: 1;
+    }
+    .ment-hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── For whom ── */
+    .ment-forwhom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (max-width: 680px) { .ment-forwhom { grid-template-columns: 1fr; gap: 32px; } }
+    .ment-fw-col h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: .04em;
+      color: white;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(249,115,22,.15);
+    }
+    .ment-fw-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .ment-fw-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      color: rgba(255,248,240,.6);
+      line-height: 1.5;
+    }
+    .ment-fw-ico {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .ment-fw-ico--yes { color: var(--amber); }
+    .ment-fw-ico--no  { color: rgba(255,248,240,.2); }
+
+    /* ── What you get ── */
+    .ment-what-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+    @media (max-width: 860px) { .ment-what-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 540px) { .ment-what-grid { grid-template-columns: 1fr; } }
+
+    .ment-what-card {
+      padding: 28px;
+      border-radius: 16px;
+      background: rgba(10,5,1,.9);
+      border: 1px solid rgba(255,200,120,.08);
+      transition: border-color .3s, transform .3s var(--ease-expo);
+    }
+    .ment-what-card:hover {
+      border-color: rgba(249,115,22,.2);
+      transform: translateY(-5px);
+    }
+    .ment-what-num {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+    .ment-what-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: .04em;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .ment-what-desc {
+      font-size: .84rem;
+      font-weight: 300;
+      color: rgba(255,248,240,.4);
+      line-height: 1.7;
+    }
+
+    /* ── Packages ── */
+    .ment-pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .ment-pkg-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+
+    .ment-pkg {
+      padding: 36px 32px;
+      border-radius: 20px;
+      background: rgba(10,5,1,.9);
+      border: 1px solid rgba(255,200,120,.08);
+      transition: border-color .3s, transform .35s var(--ease-expo), box-shadow .3s;
+    }
+    .ment-pkg:hover {
+      border-color: rgba(249,115,22,.2);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(3,1,0,.6);
+    }
+    .ment-pkg--featured {
+      background: rgba(14,7,1,.97);
+      border-color: rgba(249,115,22,.3);
+      box-shadow: 0 0 0 1px rgba(249,115,22,.15), 0 30px 70px rgba(3,1,0,.7);
+      transform: translateY(-10px);
+      position: relative;
+    }
+    .ment-pkg--featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #f97316 40%, #fbbf24 60%, transparent);
+    }
+    .ment-pkg--featured:hover { transform: translateY(-16px); }
+
+    .ment-pkg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(249,115,22,.12);
+      border: 1px solid rgba(249,115,22,.3);
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .1em;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .ment-pkg-badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    .ment-pkg-name {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .28em;
+      color: rgba(255,248,240,.3);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .ment-pkg-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 5px;
+    }
+    .ment-pkg-currency {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,248,240,.4);
+      align-self: flex-start;
+      margin-top: 6px;
+    }
+    .ment-pkg-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.8rem;
+      line-height: 1;
+      color: white;
+    }
+    .ment-pkg--featured .ment-pkg-value {
+      background: linear-gradient(135deg, #fff 40%, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ment-pkg-period {
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      color: rgba(255,248,240,.22);
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+    }
+    .ment-pkg-desc {
+      font-size: .84rem;
+      font-weight: 300;
+      color: rgba(255,248,240,.38);
+      line-height: 1.65;
+      padding-bottom: 22px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(255,200,120,.07);
+    }
+    .ment-pkg-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 28px;
+    }
+    .ment-pkg-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .84rem;
+      color: rgba(255,248,240,.62);
+      line-height: 1.4;
+    }
+    .ment-pkg-check {
+      width: 15px; height: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--amber);
+    }
+    .ment-pkg-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: transform .22s var(--ease-spring), box-shadow .22s, background .2s, border-color .2s;
+    }
+    .ment-pkg-btn--ghost {
+      border: 1.5px solid rgba(255,255,255,.1);
+      color: rgba(255,248,240,.55);
+      background: transparent;
+    }
+    .ment-pkg-btn--ghost:hover {
+      border-color: rgba(249,115,22,.4);
+      color: var(--amber);
+      background: rgba(249,115,22,.06);
+    }
+    .ment-pkg-btn--primary {
+      background: linear-gradient(135deg, #b45309, #f97316);
+      color: white;
+      border: none;
+    }
+    .ment-pkg-btn--primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(249,115,22,.45);
+    }
+
+    /* ── How it works ── */
+    .ment-how-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 0;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+    @media (max-width: 800px) { .ment-how-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .ment-how-grid { grid-template-columns: 1fr; } }
+
+    /* Connector line between steps */
+    .ment-how-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 1px;
+      background: linear-gradient(90deg, rgba(249,115,22,.3), rgba(251,191,36,.4), rgba(249,115,22,.3));
+      pointer-events: none;
+    }
+    @media (max-width: 800px) { .ment-how-grid::before { display: none; } }
+
+    .ment-step {
+      padding: 0 20px;
+      text-align: center;
+      position: relative;
+    }
+    .ment-step-num {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(249,115,22,.1);
+      border: 1.5px solid rgba(249,115,22,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--amber);
+      position: relative;
+      z-index: 1;
+    }
+    .ment-step-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .04em;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .ment-step-desc {
+      font-size: .82rem;
+      font-weight: 300;
+      color: rgba(255,248,240,.38);
+      line-height: 1.6;
+    }
+
+    /* ── Mini CTA ── */
+    .ment-mini-cta {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 56px 40px;
+      border-radius: 24px;
+      background: rgba(14,7,1,.97);
+      border: 1px solid rgba(249,115,22,.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .ment-mini-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #f97316 40%, #fbbf24 60%, transparent);
+    }
+    .ment-mini-cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: .92;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .ment-mini-cta-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ment-mini-cta-sub {
+      font-size: .9rem;
+      font-weight: 300;
+      color: rgba(255,248,240,.42);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .ment-mini-cta-btns {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    /* ── Guarantee badge ── */
+    .guarantee-band {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px 32px;
+      border-radius: 999px;
+      background: rgba(249,115,22,.07);
+      border: 1px solid rgba(249,115,22,.15);
+      max-width: 600px;
+      margin: 48px auto 0;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .guarantee-band svg { flex-shrink: 0; color: var(--amber); }
+    .guarantee-band p {
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .08em;
+      color: rgba(255,248,240,.5);
+      line-height: 1.55;
+    }
+    .guarantee-band strong { color: rgba(255,248,240,.75); }
+  </style>
+</head>
+<body>
+
+  <!-- ══ PRELOADER ══ -->
+  <div id="preloader"><div class="preloader-dot"></div></div>
+
+  <!-- ══ CURSOR ══ -->
+  <div id="cursor"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <header id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo-wrap">
+        <img src="BlackHoleHeader.png" alt="" class="nav-logo-img" aria-hidden="true" />
+        <a href="index.html" class="nav-logo">
+          SINGULARITY<span class="logo-dim">PAGES</span>
+        </a>
+      </div>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="index.html#portfolio"  class="nl">Portfólio</a>
+        <a href="index.html#estrategia" class="nl">Estratégia</a>
+        <a href="index.html#pricing"    class="nl">Preços</a>
+        <a href="mentoria.html"         class="nl nl--highlight">Mentoria</a>
+      </nav>
+      <div class="nav-end">
+        <a href="https://wa.me/5512999999999?text=Quero+saber+mais+sobre+a+Mentoria!" target="_blank" rel="noopener" class="nav-cta">
+          <span class="cta-dot"></span>
+          AGENDAR SESSÃO
+        </a>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <a href="index.html"            class="mn-link">← Voltar ao site</a>
+      <a href="index.html#portfolio"  class="mn-link">Portfólio</a>
+      <a href="index.html#pricing"    class="mn-link">Preços</a>
+      <a href="mentoria.html"         class="mn-link mn-link--highlight">Mentoria</a>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="ment-hero">
+    <div class="ment-hero-ring"></div>
+    <div class="ment-hero-ring"></div>
+    <div class="ment-hero-ring"></div>
+
+    <div class="ment-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">MENTORIA 1:1 DE CONVERSÃO</span>
+      <span class="eyebrow-line"></span>
+    </div>
+
+    <h1 class="ment-hero-title">
+      PARE DE<br/>ADIVINHAR.<br/><em>CONVERTA.</em>
+    </h1>
+
+    <p class="ment-hero-sub">
+      Sessões individuais focadas em analisar seu funil, identificar exatamente onde você está perdendo clientes e montar um plano de ação prático — sem enrolação, sem teoria inútil.
+    </p>
+
+    <div class="ment-hero-ctas">
+      <a href="https://wa.me/5512999999999?text=Quero+agendar+uma+sessao+de+Mentoria!" target="_blank" rel="noopener" class="btn-primary">
+        <svg class="wh-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar minha sessão
+      </a>
+      <a href="#pacotes" class="btn-ghost">
+        Ver pacotes
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PARA QUEM É
+  ══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="s-eyebrow">// Para quem é esta mentoria</span>
+        <h2 class="s-title">A MENTORIA<br/><em class="s-italic">CERTA PRA VOCÊ</em>?</h2>
+      </div>
+
+      <div class="ment-forwhom">
+        <div class="ment-fw-col">
+          <h3>✦ &nbsp;É para você se…</h3>
+          <ul class="ment-fw-list">
+            <li class="ment-fw-item">
+              <svg class="ment-fw-ico ment-fw-ico--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Você tem tráfego mas poucos leads convertem
+            </li>
+            <li class="ment-fw-item">
+              <svg class="ment-fw-ico ment-fw-ico--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Seu site existe mas não gera resultado mensurável
+            </li>
+            <li class="ment-fw-item">
+              <svg class="ment-fw-ico ment-fw-ico--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Você está prestes a lançar algo e quer acertar de primeira
+            </li>
+            <li class="ment-fw-item">
+              <svg class="ment-fw-ico ment-fw-ico--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Você quer entender CRO, copy e funil sem fazer um curso de 40 horas
+            </li>
+            <li class="ment-fw-item">
+              <svg class="ment-fw-ico ment-fw-ico--yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Você quer uma segunda opinião especializada antes de investir em mídia
+            </li>
+          </ul>
+        </div>
+        <div class="ment-fw-col">
+          <h3 style="color: rgba(255,248,240,.35);">✕ &nbsp;Não é para você se…</h3>
+          <ul class="ment-fw-list">
+            <li class="ment-fw-item" style="color:rgba(255,248,240,.35)">
+              <svg class="ment-fw-ico ment-fw-ico--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Você quer apenas um site bonito sem se importar com resultado
+            </li>
+            <li class="ment-fw-item" style="color:rgba(255,248,240,.35)">
+              <svg class="ment-fw-ico ment-fw-ico--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Você ainda não tem nenhuma oferta ou produto definido
+            </li>
+            <li class="ment-fw-item" style="color:rgba(255,248,240,.35)">
+              <svg class="ment-fw-ico ment-fw-ico--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Você quer garantias de resultado sem aplicar o que for combinado
+            </li>
+            <li class="ment-fw-item" style="color:rgba(255,248,240,.35)">
+              <svg class="ment-fw-ico ment-fw-ico--no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Você busca um curso gravado para consumir no seu tempo
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       O QUE VOCÊ RECEBE
+  ══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-bg-glow glow-purple"></div>
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="s-eyebrow">// O que está incluso</span>
+        <h2 class="s-title">O QUE VOCÊ<br/><em class="s-italic">RECEBE</em>.</h2>
+      </div>
+
+      <div class="ment-what-grid">
+        <div class="ment-what-card">
+          <div class="ment-what-num">01</div>
+          <h3 class="ment-what-title">Diagnóstico de Funil</h3>
+          <p class="ment-what-desc">Análise completa do seu funil atual — onde o tráfego entra, onde escapa e por que. Você sai da sessão sabendo exatamente o que consertar primeiro.</p>
+        </div>
+        <div class="ment-what-card">
+          <div class="ment-what-num">02</div>
+          <h3 class="ment-what-title">Auditoria de Copy</h3>
+          <p class="ment-what-desc">Revisamos cada headline, cada CTA e cada bloco de texto da sua página com foco em conversão. Identificamos o que repele e o que atrai o seu avatar.</p>
+        </div>
+        <div class="ment-what-card">
+          <div class="ment-what-num">03</div>
+          <h3 class="ment-what-title">Plano de Ação Escrito</h3>
+          <p class="ment-what-desc">Ao final da sessão você recebe um documento com as prioridades ordenadas, o racional de cada mudança e um checklist para implementar sozinho ou com apoio.</p>
+        </div>
+        <div class="ment-what-card">
+          <div class="ment-what-num">04</div>
+          <h3 class="ment-what-title">Gravação da Sessão</h3>
+          <p class="ment-what-desc">A sessão é gravada e enviada para você. Reveja quantas vezes quiser, compartilhe com seu time ou designer sem perder nenhum detalhe.</p>
+        </div>
+        <div class="ment-what-card">
+          <div class="ment-what-num">05</div>
+          <h3 class="ment-what-title">Suporte Pós-Sessão</h3>
+          <p class="ment-what-desc">7 dias de acesso via WhatsApp para tirar dúvidas sobre a implementação do plano. Nada de suporte genérico — você fala direto com quem fez a análise.</p>
+        </div>
+        <div class="ment-what-card">
+          <div class="ment-what-num">06</div>
+          <h3 class="ment-what-title">Análise de Concorrentes</h3>
+          <p class="ment-what-desc">Mapeamos 2–3 concorrentes diretos e identificamos o que eles fazem bem, o que fazem mal e onde existe uma brecha para você se posicionar com vantagem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COMO FUNCIONA
+  ══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="s-eyebrow">// O processo</span>
+        <h2 class="s-title">COMO<br/><em class="s-italic">FUNCIONA</em>.</h2>
+      </div>
+
+      <div class="ment-how-grid">
+        <div class="ment-step">
+          <div class="ment-step-num">01</div>
+          <h4 class="ment-step-title">Agendamento</h4>
+          <p class="ment-step-desc">Você escolhe o pacote, paga e recebe um link para agendar no horário que preferir.</p>
+        </div>
+        <div class="ment-step">
+          <div class="ment-step-num">02</div>
+          <h4 class="ment-step-title">Pré-análise</h4>
+          <p class="ment-step-desc">Enviamos um formulário curto. Com as respostas, já chegamos à sessão com o diagnóstico inicial pronto.</p>
+        </div>
+        <div class="ment-step">
+          <div class="ment-step-num">03</div>
+          <h4 class="ment-step-title">Sessão ao vivo</h4>
+          <p class="ment-step-desc">Reunião por vídeo, gravada, com tela compartilhada. Direto ao ponto, sem enrolação.</p>
+        </div>
+        <div class="ment-step">
+          <div class="ment-step-num">04</div>
+          <h4 class="ment-step-title">Plano + Suporte</h4>
+          <p class="ment-step-desc">Você recebe o documento de ação e 7 dias de suporte para implementar com segurança.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PACOTES
+  ══════════════════════════════════════ -->
+  <section id="pacotes" class="section">
+    <div class="section-bg-glow glow-cyan right"></div>
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="s-eyebrow">// Investimento</span>
+        <h2 class="s-title">ESCOLHA SEU<br/><em class="s-italic">PACOTE</em>.</h2>
+        <p class="s-sub">Todas as sessões são ao vivo, individuais e focadas 100% no seu negócio.</p>
+      </div>
+
+      <div class="ment-pkg-grid">
+
+        <!-- Sessão única -->
+        <div class="ment-pkg">
+          <p class="ment-pkg-name">Sessão única</p>
+          <div class="ment-pkg-price">
+            <span class="ment-pkg-currency">R$</span>
+            <span class="ment-pkg-value">397</span>
+          </div>
+          <p class="ment-pkg-period">pagamento único · 90 min</p>
+          <p class="ment-pkg-desc">Para quem quer uma análise pontual e um plano de ação claro para implementar.</p>
+          <ul class="ment-pkg-list">
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              1 sessão de 90 min ao vivo
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Diagnóstico de funil + copy
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Plano de ação escrito
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Gravação completa da sessão
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              7 dias de suporte pós-sessão
+            </li>
+          </ul>
+          <a href="https://wa.me/5512999999999?text=Quero+a+Sessao+Unica+de+Mentoria!" target="_blank" rel="noopener" class="ment-pkg-btn ment-pkg-btn--ghost">
+            Agendar sessão
+          </a>
+        </div>
+
+        <!-- Acelerador (featured) -->
+        <div class="ment-pkg ment-pkg--featured">
+          <div class="ment-pkg-badge">
+            <span class="ment-pkg-badge-dot"></span>
+            Mais escolhido
+          </div>
+          <p class="ment-pkg-name">Acelerador</p>
+          <div class="ment-pkg-price">
+            <span class="ment-pkg-currency">R$</span>
+            <span class="ment-pkg-value">997</span>
+          </div>
+          <p class="ment-pkg-period">pagamento único · 3 sessões</p>
+          <p class="ment-pkg-desc">Para quem quer acompanhamento durante a implementação e garantir que as mudanças gerem resultado.</p>
+          <ul class="ment-pkg-list">
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              3 sessões de 90 min (30 dias)
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Diagnóstico profundo + análise de concorrentes
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Plano de ação + revisão após implementação
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Gravações de todas as sessões
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              30 dias de suporte via WhatsApp
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Revisão de copy da sua página inclusa
+            </li>
+          </ul>
+          <a href="https://wa.me/5512999999999?text=Quero+o+Pacote+Acelerador+de+Mentoria!" target="_blank" rel="noopener" class="ment-pkg-btn ment-pkg-btn--primary">
+            Quero o Acelerador
+          </a>
+        </div>
+
+        <!-- Auditoria express -->
+        <div class="ment-pkg">
+          <p class="ment-pkg-name">Auditoria Express</p>
+          <div class="ment-pkg-price">
+            <span class="ment-pkg-currency">R$</span>
+            <span class="ment-pkg-value">197</span>
+          </div>
+          <p class="ment-pkg-period">pagamento único · assíncrono</p>
+          <p class="ment-pkg-desc">Mande a URL da sua página e receba um vídeo de 20 min com os principais erros que estão travando suas conversões.</p>
+          <ul class="ment-pkg-list">
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Vídeo gravado de ~20 min
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Top 10 erros de conversão da sua página
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Documento escrito com sugestões
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Entrega em até 48h úteis
+            </li>
+            <li class="ment-pkg-item">
+              <svg class="ment-pkg-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              3 dias de dúvidas via WhatsApp
+            </li>
+          </ul>
+          <a href="https://wa.me/5512999999999?text=Quero+a+Auditoria+Express!" target="_blank" rel="noopener" class="ment-pkg-btn ment-pkg-btn--ghost">
+            Pedir auditoria
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Guarantee -->
+      <div class="guarantee-band">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <p>
+          <strong>Garantia de 7 dias.</strong> Se você achar que a sessão não valeu o investimento, devolvemos 100% do valor. Sem perguntas, sem burocracia.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       MINI CTA
+  ══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="ment-mini-cta">
+        <h2 class="ment-mini-cta-title">
+          PRONTO PARA<br/><em>PARAR DE PERDER</em><br/>CLIENTES?
+        </h2>
+        <p class="ment-mini-cta-sub">
+          Uma sessão já é suficiente para você enxergar o que está invisível no seu próprio funil. Agende agora — as vagas são limitadas.
+        </p>
+        <div class="ment-mini-cta-btns">
+          <a href="https://wa.me/5512999999999?text=Quero+agendar+uma+sessao+de+Mentoria!" target="_blank" rel="noopener" class="btn-primary">
+            <svg class="wh-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar no WhatsApp
+          </a>
+          <a href="index.html" class="btn-ghost">
+            ← Ver planos de site
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <span class="footer-logo">SingularityPages</span>
+        <p class="footer-tagline">Código puro. Design singular.</p>
+      </div>
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <a href="index.html">Site principal</a>
+        <a href="https://wa.me/5512999999999" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:contato@singularitypages.com.br">E-mail</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <p class="footer-copy">© 2025 SingularityPages</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a id="waFloat" href="https://wa.me/5512999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <span class="wha-pulse" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    'use strict';
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('preloader');
+      if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 700); }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Navbar scroll
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+      }, { passive: true });
+
+      // Mobile menu
+      const btn = document.getElementById('menuBtn');
+      const mob = document.getElementById('mobileNav');
+      if (btn && mob) {
+        btn.addEventListener('click', () => {
+          const open = mob.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open);
+          mob.setAttribute('aria-hidden', !open);
+        });
+        mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          mob.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      // WA float
+      const wa = document.getElementById('waFloat');
+      window.addEventListener('scroll', () => {
+        wa.classList.toggle('visible', window.scrollY > 300);
+      }, { passive: true });
+
+      // Smooth anchors
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (!target) return;
+          e.preventDefault();
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

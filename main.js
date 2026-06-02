@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
   animateHero();
+  initFaq();
   initWaFloat();
   initSmoothAnchors();
   waitForGSAP(initGSAP);
@@ -72,11 +73,11 @@ function initDust() {
       this.flicker = Math.random() * Math.PI * 2;
 
       const roll = Math.random();
-      this.col = roll < .5
-        ? 'rgba(240,220,200,'
+      this.col = roll < .45
+        ? 'rgba(249,180,100,'   // warm amber
         : roll < .75
-          ? 'rgba(255,200,120,'
-          : 'rgba(200,160,255,';
+          ? 'rgba(251,146,60,'  // orange
+          : 'rgba(255,220,150,'; // pale gold
     }
 
     update() {
@@ -366,6 +367,29 @@ function initGSAP() {
       x: i % 2 === 0 ?  35 : -35,
       ease: 'none',
       scrollTrigger: { trigger: orb.parentElement, start: 'top bottom', end: 'bottom top', scrub: 2.5 },
+    });
+  });
+}
+
+/* ─── FAQ accordion ──────────────────────────────────── */
+function initFaq() {
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item    = btn.closest('.faq-item');
+      const panel   = item.querySelector('.faq-a');
+      const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all others in the same column
+      const col = item.closest('.faq-col');
+      col.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(other => {
+        if (other === btn) return;
+        other.setAttribute('aria-expanded', 'false');
+        other.closest('.faq-item').querySelector('.faq-a').classList.remove('open');
+      });
+
+      // Toggle current
+      btn.setAttribute('aria-expanded', !isOpen);
+      panel.classList.toggle('open', !isOpen);
     });
   });
 }
