@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
   slowVideo();
   initDust();
   initCursor();
+  initUrgencyBar();
   initNavbar();
   initMobileMenu();
+  initTicker();
   animateHero();
   initFaq();
   initWaFloat();
@@ -137,6 +139,38 @@ function initDust() {
 
 /* ─── Custom cursor (disabled — using OS default) ────── */
 function initCursor() { /* noop */ }
+
+/* ─── Urgency bar ────────────────────────────────────── */
+function initUrgencyBar() {
+  const bar   = document.getElementById('urgencyBar');
+  const close = document.getElementById('urgencyClose');
+  if (!bar || !close) return;
+
+  // Check if user already dismissed it this session
+  if (sessionStorage.getItem('urgencyDismissed')) {
+    bar.classList.add('hidden');
+    document.body.classList.remove('bar-visible');
+    return;
+  }
+
+  document.body.classList.add('bar-visible');
+
+  close.addEventListener('click', () => {
+    bar.classList.add('hidden');
+    document.body.classList.remove('bar-visible');
+    sessionStorage.setItem('urgencyDismissed', '1');
+  });
+}
+
+/* ─── Tech ticker — duplicate items for seamless loop ── */
+function initTicker() {
+  const items = document.getElementById('tickerItems');
+  if (!items) return;
+  // Clone the items so the loop is seamless
+  const clone = items.cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');
+  items.parentNode.appendChild(clone);
+}
 
 /* ─── Navbar scroll behavior ─────────────────────────── */
 function initNavbar() {
@@ -332,7 +366,7 @@ function initGSAP() {
     );
   });
 
-  /* Stats counter */
+  /* Stats counter — hero stats + about mini stats */
   document.querySelectorAll('[data-count]').forEach(el => {
     const target = parseInt(el.dataset.count, 10);
     const suffix = el.dataset.suffix || '';

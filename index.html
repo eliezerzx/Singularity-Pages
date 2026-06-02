@@ -3,8 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SingularityPages — Landing Pages com poder de atração gravitacional." />
-  <title>SingularityPages</title>
+  <meta name="description" content="SingularityPages — Landing Pages com poder de atração gravitacional. Código puro, performance absoluta e design que converte." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://singularitypages.com.br/" />
+  <meta property="og:title"       content="SingularityPages — Landing Pages Gravitacionais" />
+  <meta property="og:description" content="Não vendemos apenas páginas. Vendemos conversão. Código puro, PageSpeed 100 e design que colapsa a concorrência." />
+  <meta property="og:image"       content="https://singularitypages.com.br/og-image.jpg" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale"      content="pt_BR" />
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="SingularityPages — Landing Pages Gravitacionais" />
+  <meta name="twitter:description" content="Não vendemos apenas páginas. Vendemos conversão." />
+  <meta name="twitter:image"       content="https://singularitypages.com.br/og-image.jpg" />
+
+  <title>SingularityPages — Landing Pages que Convertem</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23060300'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='22' font-weight='700' fill='%23f97316'>S</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23060300'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='22' font-weight='700' fill='%23f97316'>S</text></svg>" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,6 +52,24 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- ══ URGENCY BAR ══ -->
+  <div id="urgencyBar" class="urgency-bar">
+    <div class="urgency-inner">
+      <span class="urgency-dot" aria-hidden="true"></span>
+      <p>
+        <strong>Apenas 2 vagas abertas em junho</strong>
+        &nbsp;·&nbsp; Garante a sua antes que feche
+      </p>
+      <a href="https://wa.me/5512999999999?text=Quero+garantir+minha+vaga!" target="_blank" rel="noopener" class="urgency-cta">
+        Garantir vaga
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="urgency-close" id="urgencyClose" aria-label="Fechar aviso">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
 
   <!-- ══ PRELOADER ══ -->
   <div id="preloader">
@@ -75,12 +114,12 @@
 
       <!-- Desktop links -->
       <nav class="nav-links" aria-label="Navegação principal">
-        <a href="#portfolio" class="nl">Portfólio</a>
+        <a href="#portfolio"  class="nl">Portfólio</a>
         <a href="#estrategia" class="nl">Estratégia</a>
-        <a href="#why"       class="nl">Diferenciais</a>
-        <a href="#process"   class="nl">Processo</a>
-        <a href="#pricing"   class="nl">Preços</a>
-        <a href="#faq"       class="nl">FAQ</a>
+        <a href="#sobre"      class="nl">Sobre</a>
+        <a href="#process"    class="nl">Processo</a>
+        <a href="#pricing"    class="nl">Preços</a>
+        <a href="#faq"        class="nl">FAQ</a>
         <a href="mentoria.html" class="nl nl--highlight">Mentoria</a>
       </nav>
 
@@ -101,7 +140,7 @@
     <div class="mobile-nav" id="mobileNav" aria-hidden="true">
       <a href="#portfolio"  class="mn-link">Portfólio</a>
       <a href="#estrategia" class="mn-link">Estratégia</a>
-      <a href="#why"        class="mn-link">Diferenciais</a>
+      <a href="#sobre"      class="mn-link">Sobre</a>
       <a href="#process"    class="mn-link">Processo</a>
       <a href="#pricing"    class="mn-link">Preços</a>
       <a href="#faq"        class="mn-link">FAQ</a>
@@ -164,8 +203,13 @@
       </div>
       <div class="hstat-div"></div>
       <div class="hstat">
+        <span class="hstat-n" data-count="23" data-suffix="">0</span>
+        <span class="hstat-l">Projetos Entregues</span>
+      </div>
+      <div class="hstat-div"></div>
+      <div class="hstat">
         <span class="hstat-n" data-count="0" data-suffix="">0</span>
-        <span class="hstat-l">Templates</span>
+        <span class="hstat-l">Templates Usados</span>
       </div>
     </div>
 
@@ -340,7 +384,43 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       POSITIONING — Não vendemos apenas páginas
+       TECH TICKER
+  ══════════════════════════════════════ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-fade ticker-fade--left"></div>
+    <div class="ticker-fade ticker-fade--right"></div>
+    <div class="ticker-track" id="tickerTrack">
+      <!-- items duplicated by JS for seamless loop -->
+      <div class="ticker-items" id="tickerItems">
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.5L13.5 2z"/><polyline points="13 2 13 9 20 9"/></svg>HTML5</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>CSS3</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>JavaScript</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>GSAP</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Next.js</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Vue.js</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3l14 9-14 9V3z"/></svg>Figma</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Vercel</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Three.js</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>WebGL</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>WhatsApp API</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>SEO Técnico</span>
+        <span class="tick-sep">·</span>
+        <span class="tick-item"><svg class="tick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>CRO</span>
+        <span class="tick-sep">·</span>
+      </div>
+    </div>
+  </div>
   ══════════════════════════════════════ -->
   <section id="estrategia" class="section section-positioning">
     <div class="section-bg-glow glow-purple"></div>
@@ -582,6 +662,78 @@
               <div class="tcard-role">CMO da FinTech Nexus</div>
             </div>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ABOUT — Quem está por trás
+  ══════════════════════════════════════ -->
+  <section id="sobre" class="section">
+    <div class="section-bg-glow glow-purple"></div>
+    <div class="container">
+      <div class="about-wrap">
+
+        <!-- Left: photo placeholder + stats -->
+        <div class="about-left" data-gsap="slide-left">
+          <div class="about-photo-wrap">
+            <div class="about-photo-ring about-photo-ring--1"></div>
+            <div class="about-photo-ring about-photo-ring--2"></div>
+            <!-- Troque o src por sua foto real -->
+            <div class="about-photo-placeholder" aria-label="Foto do fundador">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span>Sua foto aqui</span>
+            </div>
+          </div>
+
+          <div class="about-mini-stats">
+            <div class="about-mstat">
+              <span class="about-mstat-n" data-count="23" data-suffix="+">0+</span>
+              <span class="about-mstat-l">Projetos</span>
+            </div>
+            <div class="about-mstat-div"></div>
+            <div class="about-mstat">
+              <span class="about-mstat-n" data-count="100" data-suffix="%">0%</span>
+              <span class="about-mstat-l">Satisfação</span>
+            </div>
+            <div class="about-mstat-div"></div>
+            <div class="about-mstat">
+              <span class="about-mstat-n" data-count="3" data-suffix=" anos">0</span>
+              <span class="about-mstat-l">de Experiência</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: text -->
+        <div class="about-right" data-gsap="slide-right">
+          <span class="s-eyebrow">// Quem está por trás</span>
+          <h2 class="about-title">
+            UMA PESSOA.<br/>
+            <em class="s-italic">UMA OBSESSÃO.</em>
+          </h2>
+          <p class="about-text">
+            Sou <strong>Eliezer Carvalho</strong>, desenvolvedor e estrategista de conversão baseado em São José dos Campos. Comecei criando sites para negócios locais e percebi um padrão: agências entregavam páginas bonitas que não convertiam nada — porque nunca estudavam o negócio, o cliente ou a oferta.
+          </p>
+          <p class="about-text">
+            Fundei a SingularityPages com uma premissa simples: cada pixel precisa ter um motivo estratégico. Nada de template, nada de WordPress, nada de suposição. Código limpo, performance real e uma taxa de conversão que você consegue medir desde o primeiro dia.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">CRO</span>
+            <span class="about-tag">Copywriting</span>
+            <span class="about-tag">HTML · CSS · JS</span>
+            <span class="about-tag">GSAP</span>
+            <span class="about-tag">PageSpeed 100</span>
+            <span class="about-tag">Funil de Vendas</span>
+          </div>
+          <a href="https://wa.me/5512999999999?text=Ol%C3%A1!+Quero+conhecer+mais+sobre+a+SingularityPages!" target="_blank" rel="noopener" class="about-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Vamos conversar
+          </a>
         </div>
 
       </div>
@@ -993,6 +1145,12 @@
       </div>
     </div>
   </section>
+
+  <!-- ══ SECTION DIVIDER ══ -->
+  <div class="section-divider" aria-hidden="true">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-glow"></div>
+  </div>
 
   <!-- ══════════════════════════════════════
        CTA
