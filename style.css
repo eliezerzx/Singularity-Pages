@@ -1723,45 +1723,148 @@ body::after {
   position: relative;
   z-index: 2;
   background: #060300;
-  border-top: 1px solid rgba(255,255,255,.07);
-  padding: 44px 28px;
+  border-top: 1px solid rgba(249,115,22,.1);
+  padding: 72px 28px 0;
 }
-.footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+
+/* Top grid: brand + 3 cols */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* Brand column */
+.footer-brand { display: flex; flex-direction: column; gap: 0; }
+
 .footer-logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   letter-spacing: .04em;
   background: linear-gradient(135deg, #f97316, #fbbf24, #d97706);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.footer-logo-dim {
+  background: linear-gradient(135deg, rgba(249,115,22,.55), rgba(251,191,36,.45));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .footer-tagline {
-  font-family: 'Space Mono', monospace;
-  font-size: .62rem;
-  color: rgba(255,255,255,.22);
-  margin-top: 4px;
+  font-family: 'Barlow', sans-serif;
+  font-size: .82rem;
+  font-weight: 300;
+  color: rgba(255,248,240,.32);
+  line-height: 1.65;
+  margin-bottom: 24px;
 }
-.footer-links { display: flex; gap: 22px; }
-.footer-links a {
-  font-family: 'Space Mono', monospace;
-  font-size: .62rem;
-  color: rgba(255,255,255,.3);
-  transition: color .2s;
+
+/* Social icons */
+.footer-socials {
+  display: flex;
+  gap: 10px;
 }
-.footer-links a:hover { color: var(--amber); }
-.footer-copy {
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,248,240,.45);
+  transition: color .2s, background .2s, border-color .2s, transform .2s;
+}
+.footer-social-link:hover {
+  color: var(--amber);
+  background: rgba(249,115,22,.08);
+  border-color: rgba(249,115,22,.25);
+  transform: translateY(-2px);
+}
+
+/* Nav columns */
+.footer-col { display: flex; flex-direction: column; }
+
+.footer-col-title {
   font-family: 'Space Mono', monospace;
   font-size: .6rem;
+  letter-spacing: .25em;
+  color: rgba(255,248,240,.55);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-col-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-col-list li a {
+  font-family: 'Barlow', sans-serif;
+  font-size: .85rem;
+  font-weight: 300;
+  color: rgba(255,248,240,.38);
+  transition: color .2s, padding-left .2s;
+}
+.footer-col-list li a:hover {
+  color: var(--amber);
+  padding-left: 4px;
+}
+
+/* Contact items */
+.footer-col-list--contact { gap: 14px; }
+.footer-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Space Mono', monospace;
+  font-size: .62rem;
+  color: rgba(255,248,240,.38) !important;
+  letter-spacing: .03em;
+  line-height: 1.5;
+  transition: color .2s !important;
+  padding-left: 0 !important;
+}
+.footer-contact-item:hover {
+  color: var(--amber) !important;
+  padding-left: 0 !important;
+}
+.footer-contact-item svg { flex-shrink: 0; opacity: .6; }
+
+/* Bottom bar */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 22px 0;
+}
+.footer-copy {
+  font-family: 'Space Mono', monospace;
+  font-size: .58rem;
   color: rgba(255,255,255,.18);
+  letter-spacing: .04em;
+}
+.footer-bottom-right {
+  font-family: 'Space Mono', monospace;
+  font-size: .58rem;
+  color: rgba(255,255,255,.15);
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
 /* ─── WhatsApp Float ─────────────────────────────────── */
