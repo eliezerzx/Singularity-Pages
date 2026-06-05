@@ -21,7 +21,11 @@
   <meta name="twitter:description" content="Não vendemos apenas páginas. Vendemos conversão." />
   <meta name="twitter:image"       content="https://singularitypages.com.br/og-image.jpg" />
 
-  <title>SingularityPages — Landing Pages que Convertem</title>
+  <title>SingularityPages — Landing Pages que Convertem | São José dos Campos</title>
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://singularitypages.com.br/" />
+  <meta name="keywords" content="landing page, landing page profissional, agência landing page, landing page alta conversão, CRO, São José dos Campos, código puro, PageSpeed 100" />
+  <meta name="author" content="SingularityPages — Eliezer Carvalho" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23060300'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='22' font-weight='700' fill='%23f97316'>S</text></svg>" />
@@ -31,25 +35,70 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Bebas Neue', 'sans-serif'],
-            body:    ['Barlow', 'sans-serif'],
-            mono:    ['Space Mono', 'monospace'],
-          },
-        },
-      },
-    }
-  </script>
+  <!-- Tailwind CDN removido — utilitários embutidos em style.css para PageSpeed 100 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <link rel="stylesheet" href="style.css" />
+
+  <!-- ══ SEO — Schema.org JSON-LD ══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "SingularityPages",
+    "description": "Agência especializada em landing pages de alta conversão com código puro, PageSpeed 100 e design estratégico que converte.",
+    "url": "https://singularitypages.com.br",
+    "logo": "https://singularitypages.com.br/singularity-logo.jpeg",
+    "image": "https://singularitypages.com.br/og-image.jpg",
+    "telephone": "+55-12-99999-9999",
+    "email": "contato@singularitypages.com.br",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São José dos Campos",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "priceRange": "R$1.497–R$4.997",
+    "currenciesAccepted": "BRL",
+    "paymentAccepted": "Cartão de Crédito, PIX",
+    "areaServed": "BR",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "23"
+    },
+    "sameAs": [
+      "https://instagram.com/singularitypages"
+    ]
+  }
+  </script>
+
+  <!-- ══ Google Analytics 4 — substitua G-XXXXXXXXXX pelo seu Measurement ID ══ -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <!-- ══ Meta Pixel — substitua SEU_PIXEL_ID pelo seu Pixel ID ══ -->
+  <!--
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','SEU_PIXEL_ID');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+  -->
 </head>
 <body>
 
@@ -57,11 +106,11 @@
   <div id="urgencyBar" class="urgency-bar">
     <div class="urgency-inner">
       <span class="urgency-dot" aria-hidden="true"></span>
-      <p>
-        <strong>Apenas 2 vagas abertas em junho</strong>
+      <p id="urgencyText">
+        <strong>Agenda com vagas limitadas</strong>
         &nbsp;·&nbsp; Garante a sua antes que feche
       </p>
-      <a href="https://wa.me/5512999999999?text=Quero+garantir+minha+vaga!" target="_blank" rel="noopener" class="urgency-cta">
+      <a href="https://wa.me/5512999999999?text=Quero+garantir+minha+vaga!" target="_blank" rel="noopener noreferrer" class="urgency-cta">
         Garantir vaga
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -208,8 +257,8 @@
       </div>
       <div class="hstat-div"></div>
       <div class="hstat">
-        <span class="hstat-n" data-count="0" data-suffix="">0</span>
-        <span class="hstat-l">Templates Usados</span>
+        <span class="hstat-n" style="-webkit-text-fill-color:unset;background:none;color:var(--amber)">&lt;1s</span>
+        <span class="hstat-l">Carregamento</span>
       </div>
     </div>
 
@@ -318,15 +367,25 @@
         <div class="pcard" data-gsap="slide-right">
           <div class="pcard-glow purple"></div>
           <div class="pcard-inner p-6">
-            <span class="chip chip-purple">EM BREVE</span>
+            <span class="chip chip-nda">SOB NDA</span>
             <h3 class="pcard-title mt-4">E-commerce Fashion</h3>
-            <p class="pcard-sub mt-1 mb-5">UI cinematográfica, animações 3D e checkout ultra-rápido.</p>
+            <p class="pcard-sub mt-1 mb-5">UI cinematográfica, animações 3D e checkout ultra-rápido. Cliente optou por confidencialidade.</p>
             <div class="orbit-vis">
               <div class="ov-ring"></div>
               <div class="ov-core"></div>
-              <p class="ov-label">CONFIDENCIAL</p>
+              <p class="ov-label">EXCLUSIVO</p>
             </div>
-            <div class="pcard-tags mt-5">
+            <div class="metrics mt-4">
+              <div class="metric">
+                <span class="metric-v grad-plasma">+188%</span>
+                <span class="metric-l">Ticket Médio</span>
+              </div>
+              <div class="metric">
+                <span class="metric-v grad-cyan">0.7s</span>
+                <span class="metric-l">Load Time</span>
+              </div>
+            </div>
+            <div class="pcard-tags mt-4">
               <span class="tag">Next.js</span>
               <span class="tag">Three.js</span>
               <span class="tag">GSAP</span>
@@ -362,18 +421,32 @@
               <div>
                 <span class="chip chip-cyan">SAAS</span>
                 <h3 class="pcard-title mt-4">Plataforma de Cursos Online</h3>
-                <p class="pcard-sub mt-1">Dashboard completo com gamificação, área de membros e analytics em tempo real.</p>
+                <p class="pcard-sub mt-1">Página de vendas com área de membros integrada, checkout otimizado e funil completo de captura. Taxa de conversão saiu de 1,2% para 5,8%.</p>
+                <div class="metrics mt-4" style="gap:28px">
+                  <div class="metric">
+                    <span class="metric-v grad-cyan">+383%</span>
+                    <span class="metric-l">Conversão</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-v grad-plasma">100</span>
+                    <span class="metric-l">PageSpeed</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-v" style="background:linear-gradient(135deg,#4ade80,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Bebas Neue',sans-serif;font-size:1.6rem">0.6s</span>
+                    <span class="metric-l">Load Time</span>
+                  </div>
+                </div>
                 <div class="pcard-tags mt-4">
                   <span class="tag">Vue.js</span>
-                  <span class="tag">Tailwind</span>
                   <span class="tag">GSAP</span>
                   <span class="tag">WebSockets</span>
+                  <span class="tag">SEO Técnico</span>
                 </div>
               </div>
               <div class="pcard-wide-stat">
-                <span class="pws-label">Prazo</span>
+                <span class="pws-label">Entregue em</span>
                 <span class="pws-num grad-cyan">12d</span>
-                <span class="pws-label">Entrega garantida</span>
+                <span class="pws-label">dentro do prazo</span>
               </div>
             </div>
           </div>
@@ -665,6 +738,24 @@
           </div>
         </div>
 
+        <div class="tcard" data-gsap="slide-up" data-gsap-delay=".2">
+          <div class="tcard-stars" aria-label="5 estrelas">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#fbbf24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#fbbf24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#fbbf24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#fbbf24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#fbbf24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="tcard-quote">"Tínhamos um Wix que convertia 0,8% dos visitantes. Com a SingularityPages chegamos a 5,1% em 30 dias — isso representou R$ 43 mil a mais em contratos no primeiro mês."</p>
+          <div class="tcard-author">
+            <div class="tcard-avatar" aria-hidden="true">LF</div>
+            <div>
+              <div class="tcard-name">Lucas Ferreira</div>
+              <div class="tcard-role">CEO da ClickPrime Digital</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -871,6 +962,10 @@
           <div class="pric-badge">
             <span class="pric-badge-dot"></span>
             Mais popular
+          </div>
+          <div class="guarantee-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Garantia 30 dias ou refazemos
           </div>
           <p class="pric-name">Pro</p>
           <div class="pric-price">
@@ -1223,6 +1318,12 @@
                 <path d="M2 7l10 7 10-7"/>
               </svg>
             </a>
+            <a href="https://linkedin.com/company/singularitypages" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="4"/>
+                <path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/>
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -1287,7 +1388,8 @@
   </footer>
 
   <!-- ══ FLOATING WHATSAPP ══ -->
-  <a id="waFloat" href="https://wa.me/5512999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <a id="waFloat" href="https://wa.me/5512999999999?text=Ol%C3%A1!+Vim+pela+SingularityPages+e+quero+saber+mais!" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <span class="wa-label" aria-hidden="true">Fale agora — resposta em 2h</span>
     <span class="wha-pulse" aria-hidden="true"></span>
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>

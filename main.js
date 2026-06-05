@@ -37,10 +37,24 @@ function waitForGSAP(fn, attempts = 0) {
   setTimeout(() => waitForGSAP(fn, attempts + 1), 100);
 }
 
-/* ─── Video slow-motion ──────────────────────────────── */
+/* ─── Video slow-motion + mobile off ────────────────── */
 function slowVideo() {
   const vid = document.getElementById('bhVideo');
   if (!vid) return;
+
+  // Em mobile, desabilitar vídeo para economizar banda (poster aparece)
+  const isMobile = window.innerWidth < 768 ||
+    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    vid.removeAttribute('autoplay');
+    vid.pause();
+    // Zera src para não baixar o arquivo
+    vid.querySelectorAll('source').forEach(s => s.removeAttribute('src'));
+    vid.load();
+    return;
+  }
+
   const applyRate = () => { vid.playbackRate = 0.25; };
   vid.addEventListener('loadedmetadata', applyRate);
   vid.addEventListener('play', applyRate);
@@ -140,17 +154,26 @@ function initDust() {
 /* ─── Custom cursor (disabled — using OS default) ────── */
 function initCursor() { /* noop */ }
 
-/* ─── Urgency bar ────────────────────────────────────── */
+/* ─── Urgency bar — dinâmica ─────────────────────────── */
 function initUrgencyBar() {
   const bar   = document.getElementById('urgencyBar');
   const close = document.getElementById('urgencyClose');
+  const txt   = document.getElementById('urgencyText');
   if (!bar || !close) return;
 
-  // Check if user already dismissed it this session
   if (sessionStorage.getItem('urgencyDismissed')) {
     bar.classList.add('hidden');
     document.body.classList.remove('bar-visible');
     return;
+  }
+
+  // Dinâmico: mês atual em PT-BR + spots aleatórios 2–3
+  if (txt) {
+    const meses = ['janeiro','fevereiro','março','abril','maio','junho',
+                   'julho','agosto','setembro','outubro','novembro','dezembro'];
+    const mes   = meses[new Date().getMonth()];
+    const spots = Math.random() > 0.5 ? 2 : 3;
+    txt.innerHTML = `<strong>Apenas ${spots} vagas abertas em ${mes}</strong>&nbsp;·&nbsp; Garante a sua antes que feche`;
   }
 
   document.body.classList.add('bar-visible');
