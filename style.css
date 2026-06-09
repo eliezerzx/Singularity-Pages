@@ -3,6 +3,9 @@
    Cinematic Black Hole · Ultra-Bold · Clean & Organized
 ═══════════════════════════════════════════════════════ */
 
+/* ─── Portfolio card thumbnail hover overlay ─────────── */
+a:hover .thumb-overlay { opacity: 1 !important; }
+
 /* ─── Variables — Paleta Buraco Negro Âmbar ──────────── */
 :root {
   --void:        #060300;

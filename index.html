@@ -264,7 +264,7 @@
 
     <div class="scroll-hint" id="scrollHint" aria-hidden="true">
       <div class="sh-mouse"><div class="sh-wheel"></div></div>
-      <span>SCROLL</span>
+      <span></span>
     </div>
 
   </section>
@@ -286,167 +286,62 @@
 
       <div class="port-grid">
 
-        <!-- Card featured -->
-        <div class="pcard pcard-featured" data-gsap="slide-left">
-          <div class="pcard-glow"></div>
-          <div class="pcard-inner">
-            <div class="pcard-header">
-              <div>
-                <span class="chip chip-cyan">EM DESTAQUE</span>
-                <h3 class="pcard-title">DeliveryPro</h3>
-                <p class="pcard-sub">Software de Gestão para Delivery</p>
-              </div>
-              <!-- Icon: Zap/Lightning -->
-              <div class="pcard-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Browser mockup -->
-            <div class="mockup">
-              <div class="mockup-bar">
-                <span class="md red"></span><span class="md yellow"></span><span class="md green"></span>
-                <span class="mockup-url">delivorypro.app</span>
-              </div>
-              <div class="mockup-body">
-                <div class="msidebar">
-                  <div class="ms-logo"></div>
-                  <div class="ms-item on"></div>
-                  <div class="ms-item"></div>
-                  <div class="ms-item"></div>
-                  <div class="ms-item"></div>
-                </div>
-                <div class="mmain">
-                  <div class="mh">
-                    <div class="mh-title"></div>
-                    <div class="mh-btn"></div>
-                  </div>
-                  <div class="mstats">
-                    <div class="msc c1"></div>
-                    <div class="msc c2"></div>
-                    <div class="msc c3"></div>
-                  </div>
-                  <div class="mchart">
-                    <div class="cb" style="height:45%"></div>
-                    <div class="cb" style="height:70%"></div>
-                    <div class="cb" style="height:55%"></div>
-                    <div class="cb" style="height:85%"></div>
-                    <div class="cb" style="height:65%"></div>
-                    <div class="cb" style="height:90%"></div>
-                    <div class="cb" style="height:72%"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="pcard-tags">
-              <span class="tag">HTML5</span>
-              <span class="tag">CSS3</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">GSAP</span>
-              <span class="tag">100/100</span>
-            </div>
-            <div class="pcard-foot">
-              <span class="pcard-foot-stats">
-                <!-- Speed icon -->
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <b>0.8s</b> load
-                &nbsp;·&nbsp;
-                <!-- Chart icon -->
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                <b>+240%</b> conversão
-              </span>
-              <a href="#" class="pcard-link">Ver Projeto →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="pcard" data-gsap="slide-right">
-          <div class="pcard-glow purple"></div>
-          <div class="pcard-inner p-6">
-            <span class="chip chip-nda">SOB NDA</span>
-            <h3 class="pcard-title mt-4">E-commerce Fashion</h3>
-            <p class="pcard-sub mt-1 mb-5">UI cinematográfica, animações 3D e checkout ultra-rápido. Cliente optou por confidencialidade.</p>
-            <div class="orbit-vis">
-              <div class="ov-ring"></div>
-              <div class="ov-core"></div>
-              <p class="ov-label">EXCLUSIVO</p>
-            </div>
-            <div class="metrics mt-4">
-              <div class="metric">
-                <span class="metric-v grad-plasma">+188%</span>
-                <span class="metric-l">Ticket Médio</span>
-              </div>
-              <div class="metric">
-                <span class="metric-v grad-cyan">0.7s</span>
-                <span class="metric-l">Load Time</span>
-              </div>
-            </div>
-            <div class="pcard-tags mt-4">
-              <span class="tag">Next.js</span>
-              <span class="tag">Three.js</span>
-              <span class="tag">GSAP</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="pcard" data-gsap="slide-up">
+        <!-- Card — Demo: Portfólio Dev/Designer -->
+        <div class="pcard pcard-wide" data-gsap="slide-up" style="overflow:hidden">
           <div class="pcard-glow cyan"></div>
-          <div class="pcard-inner p-6">
-            <span class="chip chip-green">CASE REAL</span>
-            <h3 class="pcard-title mt-4">Clínica Odonto</h3>
-            <p class="pcard-sub mt-1 mb-5">Conversão elevada 3× em 30 dias.</p>
-            <div class="metrics">
-              <div class="metric">
-                <span class="metric-v grad-cyan">+312%</span>
-                <span class="metric-l">Leads</span>
-              </div>
-              <div class="metric">
-                <span class="metric-v grad-plasma">98</span>
-                <span class="metric-l">PageSpeed</span>
-              </div>
+          <!-- Thumbnail do site real -->
+          <a href="portfolio/alex-torres.html" target="_blank" rel="noopener" aria-label="Ver demo Alex Torres" style="display:block;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.07);position:relative">
+            <img
+              src="img/portfolio/alex-torres-hero.png"
+              alt="Preview do portfólio Alex Torres — Dev & Designer"
+              loading="lazy"
+              style="width:100%;height:260px;object-fit:cover;object-position:center 30%;display:block;transition:transform .6s cubic-bezier(0.16,1,0.3,1)"
+              onmouseover="this.style.transform='scale(1.03)'"
+              onmouseout="this.style.transform='scale(1)'"
+            />
+            <!-- Overlay com botão ao hover -->
+            <div style="position:absolute;inset:0;background:rgba(10,10,15,.55);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;pointer-events:none" class="thumb-overlay">
+              <span style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;background:rgba(6,182,212,.18);border:1px solid rgba(6,182,212,.45);font-family:'Space Mono',monospace;font-size:.72rem;color:#06b6d4">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Ver Demo →
+              </span>
             </div>
-          </div>
-        </div>
-
-        <!-- Card 4 wide -->
-        <div class="pcard pcard-wide" data-gsap="slide-up" data-gsap-delay=".1">
-          <div class="pcard-glow"></div>
+          </a>
           <div class="pcard-inner p-6">
             <div class="pcard-wide-inner">
               <div>
-                <span class="chip chip-cyan">SAAS</span>
-                <h3 class="pcard-title mt-4">Plataforma de Cursos Online</h3>
-                <p class="pcard-sub mt-1">Página de vendas com área de membros integrada, checkout otimizado e funil completo de captura. Taxa de conversão saiu de 1,2% para 5,8%.</p>
+                <span class="chip chip-green">DEMO</span>
+                <h3 class="pcard-title mt-4">Alex Torres — Dev &amp; Designer</h3>
+                <p class="pcard-sub mt-1">Portfólio pessoal de desenvolvedor full stack. Estilo tech azul/ciano com grid de projetos assimétrico, skill bars animadas e animações por Intersection Observer — sem nenhuma dependência externa.</p>
                 <div class="metrics mt-4" style="gap:28px">
                   <div class="metric">
-                    <span class="metric-v grad-cyan">+383%</span>
-                    <span class="metric-l">Conversão</span>
-                  </div>
-                  <div class="metric">
-                    <span class="metric-v grad-plasma">100</span>
+                    <span class="metric-v grad-cyan">100</span>
                     <span class="metric-l">PageSpeed</span>
                   </div>
                   <div class="metric">
-                    <span class="metric-v" style="background:linear-gradient(135deg,#4ade80,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Bebas Neue',sans-serif;font-size:1.6rem">0.6s</span>
-                    <span class="metric-l">Load Time</span>
+                    <span class="metric-v" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Bebas Neue',sans-serif;font-size:1.6rem">0KB</span>
+                    <span class="metric-l">Dependências</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-v" style="background:linear-gradient(135deg,#4ade80,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Bebas Neue',sans-serif;font-size:1.6rem">6</span>
+                    <span class="metric-l">Seções</span>
                   </div>
                 </div>
                 <div class="pcard-tags mt-4">
-                  <span class="tag">Vue.js</span>
-                  <span class="tag">GSAP</span>
-                  <span class="tag">WebSockets</span>
-                  <span class="tag">SEO Técnico</span>
+                  <span class="tag">HTML5</span>
+                  <span class="tag">CSS3</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Intersection Observer</span>
                 </div>
               </div>
-              <div class="pcard-wide-stat">
-                <span class="pws-label">Entregue em</span>
-                <span class="pws-num grad-cyan">12d</span>
-                <span class="pws-label">dentro do prazo</span>
+              <div class="pcard-wide-stat" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+                <a href="portfolio/alex-torres.html" target="_blank" rel="noopener"
+                   style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.3);font-family:'Space Mono',monospace;font-size:.72rem;color:#06b6d4;white-space:nowrap;transition:background .2s,box-shadow .2s;text-decoration:none"
+                   onmouseover="this.style.background='rgba(6,182,212,.22)';this.style.boxShadow='0 0 24px rgba(6,182,212,.2)'"
+                   onmouseout="this.style.background='rgba(6,182,212,.12)';this.style.boxShadow='none'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Ver Demo →
+                </a>
               </div>
             </div>
           </div>

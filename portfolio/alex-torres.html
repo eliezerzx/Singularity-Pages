@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Alex Torres — Desenvolvedor Full Stack & UI/UX Designer. Interfaces que performam e convertem." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Alex Torres — Dev & Designer" />
+  <meta property="og:description" content="Interfaces que performam e convertem." />
+
+  <title>Alex Torres — Dev & Designer</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a0a0f'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='18' font-weight='700' fill='%2306b6d4'>A</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="alex-torres.css" />
+
+</head>
+<body>
+
+  <!-- ════════ NAV ════════ -->
+  <header id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo"><span>alex</span>.torres<span>_</span></div>
+      <nav class="nav-links">
+        <a href="#about">Sobre</a>
+        <a href="#projects">Projetos</a>
+        <a href="#skills">Skills</a>
+        <a href="#testimonials">Depoimentos</a>
+      </nav>
+      <a href="#cta" class="nav-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Falar comigo
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">Sobre</a>
+      <a href="#projects">Projetos</a>
+      <a href="#skills">Skills</a>
+      <a href="#testimonials">Depoimentos</a>
+      <a href="#cta">Falar comigo</a>
+    </div>
+  </header>
+
+  <!-- ════════ HERO ════════ -->
+  <section id="hero">
+    <div class="hero-orb orb-blue"></div>
+    <div class="hero-orb orb-cyan"></div>
+
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Disponível para novos projetos
+      </div>
+
+      <h1 class="hero-title" aria-label="Full Stack Dev & UI Designer">
+        <span class="line">
+          <span class="word">Full</span>&nbsp;<span class="word">Stack</span>
+        </span>
+        <span class="line">
+          <span class="word grad-blue">Dev</span>&nbsp;<span class="word">&amp;</span>
+        </span>
+        <span class="line">
+          <span class="word">UI</span>&nbsp;<span class="word">Designer<span class="hero-cursor"></span></span>
+        </span>
+      </h1>
+
+      <p class="hero-sub">
+        Construo interfaces que as pessoas amam usar — com código limpo, performance real e atenção obsessiva a cada detalhe. Mais de 40 projetos entregues em 5 anos.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Ver projetos
+        </a>
+        <a href="#cta" class="btn-outline">
+          Vamos conversar
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-n grad-blue" data-count="42" data-suffix="+">42+</span>
+          <span class="hstat-l">Projetos</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n grad-blue" data-count="5">5</span>
+          <span class="hstat-l">Anos de XP</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n grad-blue" data-count="100">100</span>
+          <span class="hstat-l">PageSpeed</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n grad-blue" data-count="98" data-suffix="%">98%</span>
+          <span class="hstat-l">Satisfação</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span class="scroll-label"></span>
+    </div>
+  </section>
+
+  <!-- ════════ TICKER ════════ -->
+  <div class="ticker-section" aria-hidden="true">
+    <div class="ticker-fade-l"></div>
+    <div class="ticker-fade-r"></div>
+    <div class="ticker-track">
+      <div class="ticker-items" id="tickerItems">
+        <span class="tick-i"><span class="tick-dot"></span>React</span>
+        <span class="tick-i"><span class="tick-dot"></span>Next.js</span>
+        <span class="tick-i"><span class="tick-dot"></span>TypeScript</span>
+        <span class="tick-i"><span class="tick-dot"></span>Node.js</span>
+        <span class="tick-i"><span class="tick-dot"></span>PostgreSQL</span>
+        <span class="tick-i"><span class="tick-dot"></span>Tailwind CSS</span>
+        <span class="tick-i"><span class="tick-dot"></span>Figma</span>
+        <span class="tick-i"><span class="tick-dot"></span>GSAP</span>
+        <span class="tick-i"><span class="tick-dot"></span>Three.js</span>
+        <span class="tick-i"><span class="tick-dot"></span>Docker</span>
+        <span class="tick-i"><span class="tick-dot"></span>Vercel</span>
+        <span class="tick-i"><span class="tick-dot"></span>GraphQL</span>
+        <span class="tick-i"><span class="tick-dot"></span>Prisma</span>
+        <span class="tick-i"><span class="tick-dot"></span>AWS</span>
+        <span class="tick-i"><span class="tick-dot"></span>React</span>
+        <span class="tick-i"><span class="tick-dot"></span>Next.js</span>
+        <span class="tick-i"><span class="tick-dot"></span>TypeScript</span>
+        <span class="tick-i"><span class="tick-dot"></span>Node.js</span>
+        <span class="tick-i"><span class="tick-dot"></span>PostgreSQL</span>
+        <span class="tick-i"><span class="tick-dot"></span>Tailwind CSS</span>
+        <span class="tick-i"><span class="tick-dot"></span>Figma</span>
+        <span class="tick-i"><span class="tick-dot"></span>GSAP</span>
+        <span class="tick-i"><span class="tick-dot"></span>Three.js</span>
+        <span class="tick-i"><span class="tick-dot"></span>Docker</span>
+        <span class="tick-i"><span class="tick-dot"></span>Vercel</span>
+        <span class="tick-i"><span class="tick-dot"></span>GraphQL</span>
+        <span class="tick-i"><span class="tick-dot"></span>Prisma</span>
+        <span class="tick-i"><span class="tick-dot"></span>AWS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ ABOUT ════════ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-left" data-reveal="left">
+          <span class="section-eyebrow">// sobre mim</span>
+          <h2 class="section-title">Dev que pensa<br/><span class="grad-blue">como designer.</span></h2>
+          <p class="about-text">
+            Sou <strong>Alex Torres</strong>, desenvolvedor full stack e designer de interfaces baseado em São Paulo. Trabalho na interseção entre engenharia e design — onde código limpo encontra experiências que as pessoas realmente querem usar.
+          </p>
+          <p class="about-text">
+            Nos últimos 5 anos construí produtos para startups, agências e empresas de médio porte. Meu foco é sempre o mesmo: <strong>performance real, acessibilidade e conversão</strong> — sem sacrificar a estética.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">React / Next.js</span>
+            <span class="about-tag">Node.js</span>
+            <span class="about-tag">TypeScript</span>
+            <span class="about-tag">UI/UX Design</span>
+            <span class="about-tag">Figma</span>
+            <span class="about-tag">CRO</span>
+            <span class="about-tag">Web Performance</span>
+          </div>
+        </div>
+
+        <div class="about-right" data-reveal="right">
+          <div class="profile-card">
+            <div class="profile-header">
+              <div class="profile-avatar">AT</div>
+              <div class="profile-info">
+                <div class="profile-name">Alex Torres</div>
+                <div class="profile-role">Full Stack Dev & UI Designer</div>
+                <div class="profile-status">
+                  <span class="status-dot"></span>
+                  Aberto a projetos
+                </div>
+              </div>
+            </div>
+            <div class="profile-body">
+              <div class="profile-stat-grid">
+                <div class="profile-stat">
+                  <span class="profile-stat-n" data-count="42">42</span>
+                  <span class="profile-stat-l">Projetos</span>
+                </div>
+                <div class="profile-stat">
+                  <span class="profile-stat-n" data-count="5">5</span>
+                  <span class="profile-stat-l">Anos</span>
+                </div>
+                <div class="profile-stat">
+                  <span class="profile-stat-n" data-count="100" data-suffix="%">100%</span>
+                  <span class="profile-stat-l">Satisfação</span>
+                </div>
+              </div>
+              <div class="profile-links">
+                <a href="#" class="profile-link">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="profile-link">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                  LinkedIn
+                </a>
+                <a href="#cta" class="profile-link">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  Contato
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PROJECTS ════════ -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="proj-head">
+        <div data-reveal>
+          <span class="section-eyebrow">// projetos</span>
+          <h2 class="section-title">Trabalhos<br/><span class="grad-blue">selecionados.</span></h2>
+        </div>
+        <div class="proj-filter" data-reveal>
+          <button class="filter-btn active">Todos</button>
+          <button class="filter-btn">Web App</button>
+          <button class="filter-btn">Landing Page</button>
+          <button class="filter-btn">Mobile</button>
+        </div>
+      </div>
+
+      <div class="proj-grid">
+
+        <!-- Featured card -->
+        <div class="proj-card proj-card--feat proj-card--blue" data-reveal="left">
+          <div class="proj-thumb">
+            <div class="proj-bg proj-bg--blue"></div>
+            <div class="proj-grid-lines"></div>
+            <div class="proj-mockup">
+              <div class="proj-bar">
+                <span class="proj-dot" style="background:#ef4444aa"></span>
+                <span class="proj-dot" style="background:#eab308aa"></span>
+                <span class="proj-dot" style="background:#22c55eaa"></span>
+              </div>
+              <div class="proj-content">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px">
+                  <div style="height:32px;border-radius:6px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.2)"></div>
+                  <div style="height:32px;border-radius:6px;background:rgba(6,182,212,.15);border:1px solid rgba(6,182,212,.2)"></div>
+                  <div style="height:32px;border-radius:6px;background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.2)"></div>
+                </div>
+                <div style="display:flex;align-items:flex-end;gap:4px;height:60px;padding:0 4px 4px">
+                  <div style="flex:1;height:45%;background:rgba(59,130,246,.5);border-radius:2px 2px 0 0"></div>
+                  <div style="flex:1;height:70%;background:rgba(59,130,246,.5);border-radius:2px 2px 0 0"></div>
+                  <div style="flex:1;height:55%;background:rgba(59,130,246,.5);border-radius:2px 2px 0 0"></div>
+                  <div style="flex:1;height:90%;background:rgba(6,182,212,.7);border-radius:2px 2px 0 0"></div>
+                  <div style="flex:1;height:65%;background:rgba(59,130,246,.5);border-radius:2px 2px 0 0"></div>
+                  <div style="flex:1;height:80%;background:rgba(59,130,246,.5);border-radius:2px 2px 0 0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-chips">
+              <span class="proj-chip">React</span>
+              <span class="proj-chip">Node.js</span>
+              <span class="proj-chip">PostgreSQL</span>
+              <span class="proj-chip">Tailwind</span>
+            </div>
+            <h3 class="proj-title">FinTrack — Dashboard Financeiro</h3>
+            <p class="proj-desc">Plataforma SaaS para gestão financeira de PMEs. Analytics em tempo real, relatórios automatizados e integração com bancos via Open Finance.</p>
+            <div class="proj-foot">
+              <div class="proj-metric">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Tempo de carregamento: <b>0.6s</b>
+              </div>
+              <a href="#" class="proj-arrow" aria-label="Ver projeto">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="proj-card proj-card--sm proj-card--violet" data-reveal="right">
+          <div class="proj-thumb">
+            <div class="proj-bg proj-bg--violet"></div>
+            <div class="proj-grid-lines"></div>
+            <div class="proj-mockup">
+              <div class="proj-bar">
+                <span class="proj-dot" style="background:#ef4444aa"></span>
+                <span class="proj-dot" style="background:#eab308aa"></span>
+                <span class="proj-dot" style="background:#22c55eaa"></span>
+              </div>
+              <div class="proj-content" style="display:flex;flex-direction:column;gap:6px;padding:10px">
+                <div style="height:8px;width:70%;border-radius:3px;background:rgba(255,255,255,.1)"></div>
+                <div style="height:8px;width:50%;border-radius:3px;background:rgba(139,92,246,.4)"></div>
+                <div style="height:50px;border-radius:8px;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);margin-top:4px"></div>
+                <div style="height:8px;width:80%;border-radius:3px;background:rgba(255,255,255,.06)"></div>
+                <div style="height:8px;width:60%;border-radius:3px;background:rgba(255,255,255,.06)"></div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-chips">
+              <span class="proj-chip">Next.js</span>
+              <span class="proj-chip">Figma</span>
+            </div>
+            <h3 class="proj-title">Nexus CMS</h3>
+            <p class="proj-desc">Sistema headless de gerenciamento de conteúdo com editor visual drag-and-drop e API RESTful.</p>
+            <div class="proj-foot">
+              <div class="proj-metric"><b>+180%</b>&nbsp;em produtividade editorial</div>
+              <a href="#" class="proj-arrow" aria-label="Ver projeto">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wide card -->
+        <div class="proj-card proj-card--wide proj-card--cyan" data-reveal>
+          <div style="display:grid;grid-template-columns:1fr 1fr;height:100%">
+            <div class="proj-thumb" style="height:100%;min-height:180px;border-radius:0">
+              <div class="proj-bg proj-bg--cyan"></div>
+              <div class="proj-grid-lines"></div>
+              <div class="proj-mockup" style="inset:16px 16px 16px">
+                <div class="proj-bar">
+                  <span class="proj-dot" style="background:#ef4444aa"></span>
+                  <span class="proj-dot" style="background:#eab308aa"></span>
+                  <span class="proj-dot" style="background:#22c55eaa"></span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px">
+                  <div style="height:64px;border-radius:8px;background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.2)"></div>
+                  <div style="height:64px;border-radius:8px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.2)"></div>
+                  <div style="height:64px;border-radius:8px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.2)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="proj-body" style="border-left:1px solid var(--border)">
+              <div class="proj-chips">
+                <span class="proj-chip">React Native</span>
+                <span class="proj-chip">TypeScript</span>
+                <span class="proj-chip">Firebase</span>
+              </div>
+              <h3 class="proj-title">MedFlow — App de Saúde</h3>
+              <p class="proj-desc">App mobile para gestão de consultas médicas, histórico de pacientes e telemedicina integrada. Disponível em iOS e Android.</p>
+              <div class="proj-foot">
+                <div class="proj-metric"><b>4.9★</b>&nbsp;· 12k downloads</div>
+                <a href="#" class="proj-arrow" aria-label="Ver projeto">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="proj-card proj-card--sm proj-card--green" data-reveal="left">
+          <div class="proj-thumb">
+            <div class="proj-bg proj-bg--green"></div>
+            <div class="proj-grid-lines"></div>
+            <div class="proj-mockup">
+              <div class="proj-bar">
+                <span class="proj-dot" style="background:#ef4444aa"></span>
+                <span class="proj-dot" style="background:#eab308aa"></span>
+                <span class="proj-dot" style="background:#22c55eaa"></span>
+              </div>
+              <div class="proj-content" style="padding:10px">
+                <div style="height:80px;border-radius:8px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);display:flex;align-items:center;justify-content:center">
+                  <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,rgba(16,185,129,.5),rgba(6,182,212,.5));border:2px solid rgba(16,185,129,.4)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-chips">
+              <span class="proj-chip">HTML</span>
+              <span class="proj-chip">CSS</span>
+              <span class="proj-chip">GSAP</span>
+            </div>
+            <h3 class="proj-title">EcoShop Landing Page</h3>
+            <p class="proj-desc">Landing page de e-commerce sustentável com animações cinematográficas e PageSpeed 100.</p>
+            <div class="proj-foot">
+              <div class="proj-metric"><b>+290%</b>&nbsp;em conversão</div>
+              <a href="#" class="proj-arrow" aria-label="Ver projeto">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="proj-card proj-card--feat proj-card--blue" data-reveal="right">
+          <div class="proj-thumb">
+            <div class="proj-bg" style="background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08))"></div>
+            <div class="proj-grid-lines"></div>
+            <div class="proj-mockup">
+              <div class="proj-bar">
+                <span class="proj-dot" style="background:#ef4444aa"></span>
+                <span class="proj-dot" style="background:#eab308aa"></span>
+                <span class="proj-dot" style="background:#22c55eaa"></span>
+              </div>
+              <div class="proj-content" style="display:grid;grid-template-columns:56px 1fr;gap:8px;padding:10px">
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="height:32px;border-radius:6px;background:rgba(59,130,246,.2)"></div>
+                  <div style="height:20px;border-radius:5px;background:rgba(255,255,255,.06)"></div>
+                  <div style="height:20px;border-radius:5px;background:rgba(255,255,255,.06)"></div>
+                  <div style="height:20px;border-radius:5px;background:rgba(255,255,255,.06)"></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="height:10px;width:70%;border-radius:3px;background:rgba(255,255,255,.12)"></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+                    <div style="height:40px;border-radius:6px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.2)"></div>
+                    <div style="height:40px;border-radius:6px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.2)"></div>
+                  </div>
+                  <div style="height:8px;width:90%;border-radius:3px;background:rgba(255,255,255,.07)"></div>
+                  <div style="height:8px;width:65%;border-radius:3px;background:rgba(255,255,255,.07)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-chips">
+              <span class="proj-chip">Next.js</span>
+              <span class="proj-chip">GraphQL</span>
+              <span class="proj-chip">Prisma</span>
+              <span class="proj-chip">AWS</span>
+            </div>
+            <h3 class="proj-title">LearnHub — Plataforma de Cursos</h3>
+            <p class="proj-desc">SaaS de educação online com área de membros, gamificação, streaming de vídeo e pagamentos integrados. Suporta 5k usuários simultâneos.</p>
+            <div class="proj-foot">
+              <div class="proj-metric">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <b>2.3k</b>&nbsp;alunos ativos
+              </div>
+              <a href="#" class="proj-arrow" aria-label="Ver projeto">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SKILLS ════════ -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div style="max-width:600px;margin-bottom:64px" data-reveal>
+        <span class="section-eyebrow">// habilidades</span>
+        <h2 class="section-title">Stack &<br/><span class="grad-blue">expertise.</span></h2>
+        <p class="section-sub">Domínio técnico construído em projetos reais — nada de certificado sem aplicação.</p>
+      </div>
+
+      <div class="skills-grid">
+
+        <div data-reveal="left">
+          <div class="skill-group-title">Front-end</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-top"><span>React / Next.js</span><span class="skill-pct">96%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:96%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>TypeScript</span><span class="skill-pct">90%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>CSS / Tailwind / GSAP</span><span class="skill-pct">98%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:98%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>Three.js / WebGL</span><span class="skill-pct">75%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal="right">
+          <div class="skill-group-title">Back-end</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-top"><span>Node.js / Express</span><span class="skill-pct">92%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>PostgreSQL / Prisma</span><span class="skill-pct">88%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>GraphQL</span><span class="skill-pct">82%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>Docker / AWS</span><span class="skill-pct">78%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal="left">
+          <div class="skill-group-title">Design</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-top"><span>Figma / Prototyping</span><span class="skill-pct">93%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>UI/UX Design</span><span class="skill-pct">89%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:89%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>Design Systems</span><span class="skill-pct">85%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>Motion Design</span><span class="skill-pct">80%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal="right">
+          <div class="skill-group-title">Estratégia</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-top"><span>Web Performance (Core Web Vitals)</span><span class="skill-pct">100%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>CRO / Heatmaps</span><span class="skill-pct">87%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>SEO Técnico</span><span class="skill-pct">84%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:84%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-top"><span>Analytics / A/B Testing</span><span class="skill-pct">79%</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:79%"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Certs -->
+      <div class="certs-wrap" data-reveal>
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="cert-name">AWS Solutions<br/>Architect</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div class="cert-name">Google UX<br/>Design</div>
+          <div class="cert-issuer">Google / Coursera</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="cert-name">Meta Front-End<br/>Developer</div>
+          <div class="cert-issuer">Meta / Coursera</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="cert-name">WCAG 2.1<br/>Accessibility</div>
+          <div class="cert-issuer">W3C / Deque</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════ TESTIMONIALS ════════ -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div style="text-align:center;max-width:540px;margin:0 auto 56px" data-reveal>
+        <span class="section-eyebrow">// depoimentos</span>
+        <h2 class="section-title">O que dizem<br/><span class="grad-blue">os clientes.</span></h2>
+      </div>
+
+      <div class="testi-grid">
+
+        <div class="testi-card" data-reveal="left">
+          <div class="testi-stars">
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testi-quote">Alex entregou o dashboard em 10 dias com uma qualidade absurda. O produto parece de empresa grande — ficamos em choque com a diferença de antes.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">CM</div>
+            <div>
+              <div class="testi-name">Carlos Mendes</div>
+              <div class="testi-role">CEO · FinTrack</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card" data-reveal>
+          <div class="testi-stars">
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testi-quote">Impressionante a capacidade técnica aliada ao senso estético. O app ficou mais bonito que muitos produtos de grandes empresas — e carrega em meio segundo.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#8b5cf6,#06b6d4)">LP</div>
+            <div>
+              <div class="testi-name">Letícia Prado</div>
+              <div class="testi-role">CPO · MedFlow</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card" data-reveal="right">
+          <div class="testi-stars">
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg fill="#fbbf24" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testi-quote">A landing page que o Alex criou aumentou nossas conversões em 290% em 30 dias. Clareza, velocidade e beleza — tudo no mesmo projeto.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#10b981,#3b82f6)">RS</div>
+            <div>
+              <div class="testi-name">Rafael Souza</div>
+              <div class="testi-role">Fundador · EcoShop</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CTA ════════ -->
+  <section id="cta" class="section">
+    <div class="container">
+      <div class="cta-inner" data-reveal>
+        <div class="cta-glow"></div>
+        <span class="section-eyebrow" style="display:block;margin-bottom:16px">// vamos trabalhar juntos</span>
+        <h2 class="cta-title">
+          Tem um projeto<br/>em <span class="grad-blue">mente?</span>
+        </h2>
+        <p class="cta-sub">Respondo em menos de 2 horas. Sem formulário longo, sem proposta genérica.</p>
+        <div class="cta-btns">
+          <a href="mailto:alex@exemplo.com" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Enviar e-mail
+          </a>
+          <a href="#" class="btn-outline">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Ver GitHub
+          </a>
+        </div>
+        <p class="cta-footnote">SP, Brasil · Disponível para remote worldwide</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><span>alex</span>.torres</div>
+      </div>
+      <nav class="footer-links">
+        <a href="#about">Sobre</a>
+        <a href="#projects">Projetos</a>
+        <a href="#skills">Skills</a>
+        <a href="mailto:alex@exemplo.com">E-mail</a>
+      </nav>
+      <p class="footer-copy">© 2026 Alex Torres</p>
+    </div>
+  </footer>
+  <div class="made-by">
+    Landing page desenvolvida por <a href="../index.html">SingularityPages</a> &mdash; código puro, performance real.
+  </div>
+
+  <script src="alex-torres.js" defer></script>
+</body>
+</html>
