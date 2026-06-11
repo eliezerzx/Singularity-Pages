@@ -27,6 +27,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="singularity-fx.css" />
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -62,9 +63,8 @@
       justify-content: center;
       text-align: center;
       padding: 140px 28px 100px;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%,
-        rgba(180,83,9,.18) 0%, transparent 65%), #060300;
-      overflow-x: hidden; /* só bloqueia scroll horizontal dos rings, não clipa o título */
+      background: transparent;
+      overflow-x: hidden;
     }
     .ment-hero-ring {
       position: absolute;
@@ -386,9 +386,101 @@
     .ment-mini-cta-title em { font-style: italic; background: linear-gradient(135deg,#f97316,#fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .ment-mini-cta-sub { font-size: .9rem; font-weight: 300; color: rgba(255,248,240,.42); line-height: 1.7; margin-bottom: 36px; }
     .ment-mini-cta-btns { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; }
+
+    /* ══ Névoa animada ══════════════════════════════════ */
+    .nebula-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 1;           /* acima do video-bg, abaixo de tudo mais */
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .nebula-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0;
+      mix-blend-mode: screen;
+    }
+
+    /* Blob âmbar — centro-esquerda, deriva para cima */
+    .nebula-blob--1 {
+      width: 55vw; height: 55vw;
+      background: radial-gradient(circle, rgba(180,83,9,.28) 0%, transparent 70%);
+      top: 5%; left: -10%;
+      animation: nebulaFloat1 22s ease-in-out infinite alternate;
+    }
+    /* Blob laranja — direita, deriva para baixo */
+    .nebula-blob--2 {
+      width: 45vw; height: 45vw;
+      background: radial-gradient(circle, rgba(249,115,22,.18) 0%, transparent 70%);
+      top: 30%; right: -5%;
+      animation: nebulaFloat2 28s ease-in-out infinite alternate;
+    }
+    /* Blob âmbar dourado — centro inferior */
+    .nebula-blob--3 {
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(251,191,36,.12) 0%, transparent 70%);
+      bottom: 10%; left: 30%;
+      animation: nebulaFloat3 34s ease-in-out infinite alternate;
+    }
+    /* Blob sutil roxo-escuro — topo direita */
+    .nebula-blob--4 {
+      width: 35vw; height: 35vw;
+      background: radial-gradient(circle, rgba(120,50,200,.08) 0%, transparent 70%);
+      top: -5%; right: 20%;
+      animation: nebulaFloat4 19s ease-in-out infinite alternate;
+    }
+
+    @keyframes nebulaFloat1 {
+      0%   { opacity: 0;    transform: translate(0px,   0px)   scale(1);    }
+      20%  { opacity: 1; }
+      80%  { opacity: .85; }
+      100% { opacity: 0.6; transform: translate(60px, -80px)  scale(1.15); }
+    }
+    @keyframes nebulaFloat2 {
+      0%   { opacity: 0;    transform: translate(0px,  0px)   scale(1);    }
+      20%  { opacity: .9; }
+      80%  { opacity: .7; }
+      100% { opacity: 0.5; transform: translate(-50px, 70px)  scale(1.2);  }
+    }
+    @keyframes nebulaFloat3 {
+      0%   { opacity: 0;    transform: translate(0px,  0px)   scale(1);    }
+      25%  { opacity: .8; }
+      75%  { opacity: .65; }
+      100% { opacity: 0.4; transform: translate(40px, -50px)  scale(1.1);  }
+    }
+    @keyframes nebulaFloat4 {
+      0%   { opacity: 0;    transform: translate(0px, 0px)    scale(1);    }
+      30%  { opacity: .6; }
+      100% { opacity: 0.3; transform: translate(-30px, 60px)  scale(1.08); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nebula-blob { animation: none !important; opacity: .4; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ══ BACKGROUND (igual à página principal) ══ -->
+  <div class="video-bg" id="videoBg">
+    <img id="bhHero" src="../img/background.jpg" alt="" aria-hidden="true" />
+    <div class="vid-overlay vid-vignette"></div>
+    <div class="vid-overlay vid-tint"></div>
+    <div class="vid-overlay vid-bottom-fade"></div>
+  </div>
+
+  <!-- ══ NÉVOA ANIMADA ══ -->
+  <div class="nebula-wrap" aria-hidden="true">
+    <div class="nebula-blob nebula-blob--1"></div>
+    <div class="nebula-blob nebula-blob--2"></div>
+    <div class="nebula-blob nebula-blob--3"></div>
+    <div class="nebula-blob nebula-blob--4"></div>
+  </div>
+
+  <!-- ══ CAMPO DE ESTRELAS (fixo, página inteira) ══ -->
+  <canvas id="starsCanvas" aria-hidden="true"></canvas>
 
   <!-- ══ PRELOADER ══ -->
   <div id="preloader"><div class="preloader-dot"></div></div>
@@ -404,12 +496,12 @@
     <div class="nav-inner">
       <div class="nav-logo-wrap">
         <img src="BlackHoleHeader.png" alt="" class="nav-logo-img" aria-hidden="true" />
-        <a href="index.html" class="nav-logo">SINGULARITY<span class="logo-dim">PAGES</span></a>
+        <a href="../index.html" class="nav-logo">SINGULARITY<span class="logo-dim">PAGES</span></a>
       </div>
       <nav class="nav-links" aria-label="Navegação principal">
-        <a href="index.html#portfolio"  class="nl">Portfólio</a>
-        <a href="index.html#estrategia" class="nl">Estratégia</a>
-        <a href="index.html#pricing"    class="nl">Preços</a>
+        <a href="../index.html#portfolio"  class="nl">Portfólio</a>
+        <a href="../index.html#estrategia" class="nl">Estratégia</a>
+        <a href="../index.html#pricing"    class="nl">Preços</a>
         <a href="mentoria.html"         class="nl nl--highlight">Mentoria</a>
       </nav>
       <div class="nav-end">
@@ -422,9 +514,9 @@
       </div>
     </div>
     <div class="mobile-nav" id="mobileNav" aria-hidden="true">
-      <a href="index.html"            class="mn-link">← Voltar ao site</a>
-      <a href="index.html#portfolio"  class="mn-link">Portfólio</a>
-      <a href="index.html#pricing"    class="mn-link">Preços</a>
+      <a href="../index.html"            class="mn-link">← Voltar ao site</a>
+      <a href="../index.html#portfolio"  class="mn-link">Portfólio</a>
+      <a href="../index.html#pricing"    class="mn-link">Preços</a>
       <a href="mentoria.html"         class="mn-link mn-link--highlight">Mentoria</a>
     </div>
   </header>
@@ -473,31 +565,26 @@
     <!-- Stats strip -->
     <div class="ment-hero-stats" data-gsap="fade-up" data-gsap-delay=".55">
       <div class="ment-hstat">
-        <span class="ment-hstat-n">18+</span>
+        <span class="ment-hstat-n" data-count="18" data-suffix="+">18+</span>
         <span class="ment-hstat-l">Mentorados</span>
       </div>
       <div class="ment-hstat-div"></div>
       <div class="ment-hstat">
-        <span class="ment-hstat-n">4.9★</span>
+        <span class="ment-hstat-n" data-count="4.9" data-suffix="★">4.9★</span>
         <span class="ment-hstat-l">Avaliação Média</span>
       </div>
       <div class="ment-hstat-div"></div>
       <div class="ment-hstat">
-        <span class="ment-hstat-n">48h</span>
+        <span class="ment-hstat-n" data-count="48" data-suffix="h">48h</span>
         <span class="ment-hstat-l">Entrega Express</span>
       </div>
       <div class="ment-hstat-div"></div>
       <div class="ment-hstat">
-        <span class="ment-hstat-n">7d</span>
+        <span class="ment-hstat-n" data-count="7" data-suffix="d">7d</span>
         <span class="ment-hstat-l">Garantia Total</span>
       </div>
     </div>
 
-    <!-- Scroll hint -->
-    <div class="ment-scroll-hint" aria-hidden="true">
-      <div class="ment-sh-mouse"><div class="ment-sh-wheel"></div></div>
-      <span>SCROLL</span>
-    </div>
   </section>
 
   <!-- ══════════════════════════════════════
@@ -700,6 +787,73 @@
   </section>
 
   <!-- ══════════════════════════════════════
+       O MÉTODO SINGULARITY (Vídeo → Página → Venda)
+  ══════════════════════════════════════ -->
+  <section id="metodo" class="section">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="s-eyebrow" data-gsap="fade-up">// O sistema por trás da mentoria</span>
+        <h2 class="s-title" data-gsap="slide-right">O MÉTODO<br/><em class="s-italic">SINGULARITY</em>.</h2>
+        <p class="s-sub" data-gsap="fade-up" data-gsap-delay=".1">Três forças em órbita ao redor de um único objetivo: vender. Quando alinhadas, nenhum cliente escapa da atração.</p>
+      </div>
+
+      <div class="sp-method-grid">
+        <!-- Visual orbital -->
+        <div class="sp-orbit-wrap" data-gsap="scale-in" aria-hidden="true">
+          <div class="sp-core"></div>
+          <!-- Anéis decorativos -->
+          <div class="sp-ring sp-ring--1"></div>
+          <div class="sp-ring sp-ring--2"></div>
+          <div class="sp-ring sp-ring--3"></div>
+          <!--
+            Holders: div que preenche o wrap inteiro e gira.
+            O node fica posicionado no raio certo dentro do holder.
+            Counter-spin no node mantém o texto horizontal.
+          -->
+          <div class="sp-holder sp-holder--1">
+            <div class="sp-node sp-node--1"><span class="sp-node-dot"></span>Vídeo</div>
+          </div>
+          <div class="sp-holder sp-holder--2">
+            <div class="sp-node sp-node--2"><span class="sp-node-dot"></span>Página</div>
+          </div>
+          <div class="sp-holder sp-holder--3">
+            <div class="sp-node sp-node--3"><span class="sp-node-dot"></span>Venda</div>
+          </div>
+        </div>
+
+        <!-- Passos -->
+        <div class="sp-method-steps">
+          <div class="sp-mstep" data-gsap="slide-right" data-gsap-delay="0">
+            <div class="sp-mstep-orb">01</div>
+            <div>
+              <h3 class="sp-mstep-title">Anúncio em Vídeo</h3>
+              <p class="sp-mstep-desc">Você aprende a estruturar um criativo que <strong>prende nos 3 primeiros segundos</strong> — roteiro, gancho e CTA prontos para impulsionar com tráfego pago.</p>
+            </div>
+          </div>
+          <div class="sp-mflow">↓ ↓ ↓</div>
+          <div class="sp-mstep" data-gsap="slide-right" data-gsap-delay=".1">
+            <div class="sp-mstep-orb">02</div>
+            <div>
+              <h3 class="sp-mstep-title">Landing Page Focada</h3>
+              <p class="sp-mstep-desc">O clique cai numa página com <strong>um único objetivo</strong>: converter. Nada de site genérico — copy, prova social e CTA alinhados ao anúncio.</p>
+            </div>
+          </div>
+          <div class="sp-mflow">↓ ↓ ↓</div>
+          <div class="sp-mstep" data-gsap="slide-right" data-gsap-delay=".2">
+            <div class="sp-mstep-orb">03</div>
+            <div>
+              <h3 class="sp-mstep-title">Fechamento no WhatsApp</h3>
+              <p class="sp-mstep-desc">O lead chega aquecido e você fecha com <strong>script de atendimento e follow-up</strong> que transforma conversa em contrato.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="sp-method-tagline" data-gsap="fade-up">Tráfego entra. <em>Venda não escapa.</em></p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
        PACOTES
   ══════════════════════════════════════ -->
   <section id="pacotes" class="section">
@@ -848,7 +1002,7 @@
             <svg class="wh-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Agendar no WhatsApp
           </a>
-          <a href="index.html" class="btn-ghost">← Ver planos de site</a>
+          <a href="../index.html" class="btn-ghost">← Ver planos de site</a>
         </div>
       </div>
     </div>
@@ -856,18 +1010,96 @@
 
   <!-- ══ FOOTER ══ -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <span class="footer-logo">SingularityPages</span>
-        <p class="footer-tagline">Código puro. Design singular.</p>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <span class="footer-logo">Singularity<span class="footer-logo-dim">Pages</span></span>
+          <p class="footer-tagline">Código puro. Performance absoluta.<br/>Design que colapsa a concorrência.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/singularitypages" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/5512999999999" target="_blank" rel="noopener" class="footer-social-link" aria-label="WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="mailto:contato@singularitypages.com.br" class="footer-social-link" aria-label="E-mail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M2 7l10 7 10-7"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com/company/singularitypages" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="4"/>
+                <path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Serviços -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">SERVIÇOS</h4>
+          <ul class="footer-col-list">
+            <li><a href="../index.html#pricing">Landing Page Essencial</a></li>
+            <li><a href="../index.html#pricing">Landing Page Pro</a></li>
+            <li><a href="../index.html#pricing">Landing Page Premium</a></li>
+            <li><a href="../index.html#pricing">Plano Manutenção</a></li>
+            <li><a href="mentoria.html">Mentoria 1:1</a></li>
+          </ul>
+        </div>
+
+        <!-- Navegação -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">NAVEGAÇÃO</h4>
+          <ul class="footer-col-list">
+            <li><a href="../index.html">Site principal</a></li>
+            <li><a href="../index.html#portfolio">Portfólio</a></li>
+            <li><a href="../index.html#estrategia">Estratégia</a></li>
+            <li><a href="#pacotes">Pacotes</a></li>
+            <li><a href="#metodo">Método</a></li>
+          </ul>
+        </div>
+
+        <!-- Contato -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">FALE CONOSCO</h4>
+          <ul class="footer-col-list footer-col-list--contact">
+            <li>
+              <a href="https://wa.me/5512999999999?text=Ol%C3%A1!+Tenho+interesse+na+Mentoria!" target="_blank" rel="noopener" class="footer-contact-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                +55 (12) 99999-9999
+              </a>
+            </li>
+            <li>
+              <a href="mailto:contato@singularitypages.com.br" class="footer-contact-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                contato@singularitypages.com.br
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/singularitypages" target="_blank" rel="noopener" class="footer-contact-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                @singularitypages
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div><!-- /footer-grid -->
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 SingularityPages — Todos os direitos reservados.</p>
+        <p class="footer-bottom-right">São José dos Campos · SP · Brasil</p>
       </div>
-      <nav class="footer-links" aria-label="Links do rodapé">
-        <a href="index.html">Site principal</a>
-        <a href="https://wa.me/5512999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="mailto:contato@singularitypages.com.br">E-mail</a>
-        <a href="https://instagram.com/singularitypages" target="_blank" rel="noopener noreferrer">Instagram</a>
-      </nav>
-      <p class="footer-copy">© 2026 SingularityPages</p>
+
     </div>
   </footer>
 
@@ -964,7 +1196,23 @@
     waitForGSAP(() => {
       gsap.registerPlugin(ScrollTrigger);
 
-      /* CSS fallback — GSAP [data-gsap] start hidden */
+      const isMobile = window.innerWidth < 768;
+
+      /* Em mobile: revela tudo imediatamente, sem ScrollTrigger */
+      if (isMobile) {
+        document.querySelectorAll('[data-gsap]').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          el.style.filter = 'none';
+        });
+        /* Título do hero animado simples */
+        const words = ['#mhw1','#mhw2','#mhw3','#mhw4'].map(s => document.querySelector(s)).filter(Boolean);
+        gsap.set(words, { opacity: 0, y: 30 });
+        gsap.to(words, { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out', delay: 0.2 });
+        return; /* pula todo o resto do bloco GSAP */
+      }
+
+      /* Desktop: animações completas com ScrollTrigger */
       const fromMap = {
         'fade-up':    { opacity: 0, y: 55 },
         'slide-left': { opacity: 0, x: -80, rotation: -1.5 },
@@ -987,7 +1235,6 @@
 
       /* Hero title — palavra por palavra */
       const words = ['#mhw1','#mhw2','#mhw3','#mhw4'].map(s => document.querySelector(s)).filter(Boolean);
-      /* Clip via overflow foi removido — y seguro agora */
       gsap.set(words, { opacity: 0, y: 50, skewY: 3 });
       gsap.to(words, {
         opacity: 1, y: 0, skewY: 0,
@@ -1038,5 +1285,6 @@
 
   });
   </script>
+  <script src="main.js" defer></script>
 </body>
 </html>
