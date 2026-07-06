@@ -24,7 +24,11 @@ a:hover .thumb-overlay { opacity: 1 !important; }
 
 /* ─── Reset ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* previne scrollbar horizontal no elemento raiz */
+}
 body {
   background: #060300;
   color: var(--star);
