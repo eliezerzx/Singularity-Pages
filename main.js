@@ -7,6 +7,7 @@
 /* ─── Boot ───────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   slowVideo();
+  initStarsBackground();
   initDust();
   initCursor();
   initUrgencyBar();
@@ -154,36 +155,8 @@ function initDust() {
 /* ─── Custom cursor (disabled — using OS default) ────── */
 function initCursor() { /* noop */ }
 
-/* ─── Urgency bar — dinâmica ─────────────────────────── */
-function initUrgencyBar() {
-  const bar   = document.getElementById('urgencyBar');
-  const close = document.getElementById('urgencyClose');
-  const txt   = document.getElementById('urgencyText');
-  if (!bar || !close) return;
-
-  if (sessionStorage.getItem('urgencyDismissed')) {
-    bar.classList.add('hidden');
-    document.body.classList.remove('bar-visible');
-    return;
-  }
-
-  // Dinâmico: mês atual em PT-BR + spots aleatórios 2–3
-  if (txt) {
-    const meses = ['janeiro','fevereiro','março','abril','maio','junho',
-                   'julho','agosto','setembro','outubro','novembro','dezembro'];
-    const mes   = meses[new Date().getMonth()];
-    const spots = Math.random() > 0.5 ? 2 : 3;
-    txt.innerHTML = `<strong>Apenas ${spots} vagas abertas em ${mes}</strong>&nbsp;·&nbsp; Garante a sua antes que feche`;
-  }
-
-  document.body.classList.add('bar-visible');
-
-  close.addEventListener('click', () => {
-    bar.classList.add('hidden');
-    document.body.classList.remove('bar-visible');
-    sessionStorage.setItem('urgencyDismissed', '1');
-  });
-}
+/* ─── Urgency bar — removida ─────────────────────────── */
+function initUrgencyBar() { /* noop */ }
 
 /* ─── Tech ticker — duplicate items for seamless loop ── */
 function initTicker() {
@@ -475,4 +448,78 @@ function initSmoothAnchors() {
       });
     });
   });
+}
+/* ─── Stars Background (bundui/stars — vanilla JS port) ─ */
+function initStarsBackground() {
+
+  /* Build DOM */
+  const bg    = document.createElement('div');
+  bg.id       = 'stars-bg';
+  const inner = document.createElement('div');
+  inner.id    = 'stars-inner';
+  bg.appendChild(inner);
+  document.body.insertBefore(bg, document.body.firstChild);
+
+  /* Generate box-shadow string (same algorithm as original) */
+  function genShadows(count, color) {
+    const parts = [];
+    for (let i = 0; i < count; i++) {
+      const x = Math.floor(Math.random() * 4000) - 2000;
+      const y = Math.floor(Math.random() * 4000) - 2000;
+      parts.push(`${x}px ${y}px ${color}`);
+    }
+    return parts.join(', ');
+  }
+
+  /* Create one animated star layer */
+  function createLayer(count, sizePx, durationSec, color, animName) {
+    const layer  = document.createElement('div');
+    layer.className = 'star-layer';
+    layer.style.animation = `${animName} ${durationSec}s linear infinite`;
+
+    const shadow = genShadows(count, color);
+    const shared = `width:${sizePx}px;height:${sizePx}px;box-shadow:${shadow}`;
+
+    const dot1 = document.createElement('div');
+    dot1.className = 'star-dot';
+    dot1.style.cssText = shared;
+
+    const dot2 = document.createElement('div');
+    dot2.className = 'star-dot star-dot--clone';
+    dot2.style.cssText = shared;
+
+    layer.appendChild(dot1);
+    layer.appendChild(dot2);
+    inner.appendChild(layer);
+  }
+
+  createLayer(1000, 1, 50,  '#ffffff', 'starsScrollSlow');
+  createLayer(400,  2, 100, '#ffffff', 'starsScrollMed');
+  createLayer(200,  3, 150, '#ffffff', 'starsScrollFast');
+
+  /* Fade in after hero leaves viewport */
+  const hero = document.getElementById('hero');
+  function checkVisibility() {
+    const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+    bg.classList.toggle('is-visible', heroBottom <= window.innerHeight * 0.3);
+  }
+  window.addEventListener('scroll', checkVisibility, { passive: true });
+  checkVisibility();
+
+  /* Mouse parallax with spring (mimics motion/useSpring) */
+  let tX = 0, tY = 0, cX = 0, cY = 0;
+  const FACTOR   = 0.05;
+  const STIFFNESS = 0.06;
+
+  document.addEventListener('mousemove', e => {
+    tX = -(e.clientX - window.innerWidth  / 2) * FACTOR;
+    tY = -(e.clientY - window.innerHeight / 2) * FACTOR;
+  });
+
+  (function springLoop() {
+    cX += (tX - cX) * STIFFNESS;
+    cY += (tY - cY) * STIFFNESS;
+    inner.style.transform = `translate(${cX.toFixed(2)}px, ${cY.toFixed(2)}px)`;
+    requestAnimationFrame(springLoop);
+  })();
 }

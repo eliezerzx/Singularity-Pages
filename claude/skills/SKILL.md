@@ -1,0 +1,1 @@
+escala de tipografia, sistema de espaçamento (grid base de 8px), tokens de cor (primária, neutra, destaque) e padrões de componente. Inclui a instrução "evite a estética genérica de IA". No reel isso aparece como a skill "UI UX Pro Max"
