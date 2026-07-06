@@ -909,6 +909,34 @@ body::after {
 
 .pcard-wide-inner { display: flex; align-items: flex-start; gap: 32px; }
 .pcard-wide-stat  { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .pcard-wide-inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .pcard-wide-stat {
+    align-items: flex-start;
+    width: 100%;
+  }
+  .pcard-wide-stat a {
+    width: 100%;
+    justify-content: center;
+  }
+  .pcard-tags {
+    padding: 0;
+  }
+  .metrics {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .metric {
+    padding: 10px 6px;
+  }
+  .metric-v {
+    font-size: 1.4rem;
+  }
+}
 .pws-label {
   font-family: 'Space Mono', monospace;
   font-size: .6rem;
