@@ -915,6 +915,11 @@ body::after {
     flex-direction: column;
     gap: 20px;
   }
+  .pcard-wide-inner > div:first-child {
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+  }
   .pcard-wide-stat {
     align-items: flex-start;
     width: 100%;
@@ -925,6 +930,15 @@ body::after {
   }
   .pcard-tags {
     padding: 0;
+  }
+  .pcard-title {
+    font-size: 1.4rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .pcard-sub {
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .metrics {
     grid-template-columns: 1fr 1fr 1fr;
